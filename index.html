@@ -1,14 +1,5 @@
 <html lang="en"><head>
     <meta charset="utf-8">
-  <link rel="dns-prefetch" href="https://assets-cdn.github.com">
-  <link rel="dns-prefetch" href="https://avatars0.githubusercontent.com">
-  <link rel="dns-prefetch" href="https://avatars1.githubusercontent.com">
-  <link rel="dns-prefetch" href="https://avatars2.githubusercontent.com">
-  <link rel="dns-prefetch" href="https://avatars3.githubusercontent.com">
-  <link rel="dns-prefetch" href="https://github-cloud.s3.amazonaws.com">
-  <link rel="dns-prefetch" href="https://user-images.githubusercontent.com/">
-
-
 
   <link href="css/frameworks-7db951ed87f8f6cbd3a9e89c294e300cf23c1a83ad7ae64c70b8f99b21031340.css" media="all" rel="stylesheet">
   <link href="css/github-7954b84ca7b0a5465456fcdde6ae9d90d5fc06dabd86ac2dcbcf1abe07cb846b.css" media="all" rel="stylesheet">
@@ -20,71 +11,6 @@
   <meta name="viewport" content="width=device-width">
   
   <title>Javadoc style coverage and parser optimization</title>
-  <link rel="search" type="application/opensearchdescription+xml" href="/opensearch.xml" title="GitHub">
-  <link rel="fluid-icon" href="https://github.com/fluidicon.png" title="GitHub">
-  <meta property="fb:app_id" content="1401488693436528">
-
-    
-    <meta content="https://avatars2.githubusercontent.com/u/5179750?v=4&amp;s=400" property="og:image"><meta content="GitHub" property="og:site_name"><meta content="object" property="og:type"><meta content="checkstyle/checkstyle" property="og:title"><meta content="https://github.com/checkstyle/checkstyle" property="og:url"><meta content="checkstyle - Checkstyle is a development tool to help programmers write Java code that adheres to a coding standard. By default it supports the Google Java Style Guide and Sun Code Conventions, but..." property="og:description">
-
-  <link rel="assets" href="https://assets-cdn.github.com/">
-  <link rel="web-socket" href="wss://live.github.com/_sockets/VjI6MTkyMzA4NDEwOjA3ZTFhZTE4NGY3NWIxMjNhMWI3MjgyZTk3MDA4MDhhMjdjNjc5YWE4MDdjZjFkNDBjNDYwNDNiMGQ4NzlmMTQ=--55d348c269346c53bc203a3f263bd305a9a87043">
-  <meta name="pjax-timeout" content="1000">
-  <link rel="sudo-modal" href="/sessions/sudo_modal">
-  <meta name="request-id" content="BA6C:223C:3BBD7EB:68A5C5A:59A0E9DA" data-pjax-transient="">
-  
-
-  <meta name="selected-link" value="repo_project" data-pjax-transient="">
-
-  <meta name="google-site-verification" content="KT5gs8h0wvaagLKAVWq8bbeNwnZZK1r1XQysX3xurLU">
-<meta name="google-site-verification" content="ZzhVyEFwb7w3e0-uOTltm8Jsck2F5StVihD0exw2fsA">
-    <meta name="google-analytics" content="UA-3769691-2">
-
-<meta content="/<user-name>/<repo-name>/repos/projects/show" data-pjax-transient="true" name="analytics-location">
-
-
-
-
-  <meta class="js-ga-set" name="dimension1" content="Logged In">
-
-
-  
-
-      <meta name="hostname" content="github.com">
-  <meta name="user-login" content="ps-sp">
-
-      <meta name="expected-hostname" content="github.com">
-    <meta name="js-proxy-site-detection-payload" content="Mzg1ZWNmMWQwOWNhYWM2YWRlMDRjNGM5NzA3ZDdlNzE1ZWE3Yjc5M2YxZWQzMGMzMGExMTM2ZDVjZjY3MDRkN3x7InJlbW90ZV9hZGRyZXNzIjoiMTgyLjc1LjQ1LjIyNSIsInJlcXVlc3RfaWQiOiJCQTZDOjIyM0M6M0JCRDdFQjo2OEE1QzVBOjU5QTBFOURBIiwidGltZXN0YW1wIjoxNTAzNzE3ODUwLCJob3N0IjoiZ2l0aHViLmNvbSJ9">
-
-    <meta name="enabled-features" content="UNIVERSE_BANNER">
-
-  <meta name="html-safe-nonce" content="d5b76bc69214e12c340c56a1686f630539b4509f">
-
-  <meta http-equiv="x-pjax-version" content="2ab5ffca839147c258ee0a100d48cfa4">
-  
-
-      <link href="https://github.com/checkstyle/checkstyle/commits/master.atom" rel="alternate" title="Recent Commits to checkstyle:master" type="application/atom+xml">
-
-  <meta name="description" content="checkstyle - Checkstyle is a development tool to help programmers write Java code that adheres to a coding standard. By default it supports the Google Java Style Guide and Sun Code Conventions, but is highly configurable. It can be invoked with an ANT task and a command line program.">
-  <meta name="go-import" content="github.com/checkstyle/checkstyle git https://github.com/checkstyle/checkstyle.git">
-
-  <meta content="5179750" name="octolytics-dimension-user_id"><meta content="checkstyle" name="octolytics-dimension-user_login"><meta content="12499251" name="octolytics-dimension-repository_id"><meta content="checkstyle/checkstyle" name="octolytics-dimension-repository_nwo"><meta content="true" name="octolytics-dimension-repository_public"><meta content="false" name="octolytics-dimension-repository_is_fork"><meta content="12499251" name="octolytics-dimension-repository_network_root_id"><meta content="checkstyle/checkstyle" name="octolytics-dimension-repository_network_root_nwo"><meta content="false" name="octolytics-dimension-repository_explore_github_marketplace_ci_cta_shown">
-
-
-
-
-  <meta name="browser-stats-url" content="https://api.github.com/_private/browser/stats">
-
-  <meta name="browser-errors-url" content="https://api.github.com/_private/browser/errors">
-
-  <link rel="mask-icon" href="https://assets-cdn.github.com/pinned-octocat.svg" color="#000000">
-  <link rel="icon" type="image/x-icon" href="https://assets-cdn.github.com/favicon.ico">
-
-<meta name="theme-color" content="#1e2327">
-
-
-  <meta name="u2f-support" content="true">
-
   </head>
 
   <body class="logged-in env-production full-width no-footer ">
