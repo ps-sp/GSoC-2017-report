@@ -1,0 +1,1180 @@
+<html lang="en"><head>
+    <meta charset="utf-8">
+
+    <link href="css/frameworks-7db951ed87f8f6cbd3a9e89c294e300cf23c1a83ad7ae64c70b8f99b21031340.css" media="all" rel="stylesheet">
+    <link href="css/github-7954b84ca7b0a5465456fcdde6ae9d90d5fc06dabd86ac2dcbcf1abe07cb846b.css" media="all" rel="stylesheet">
+
+    <meta name="viewport" content="width=device-width">
+
+    <title>Javadoc style coverage and parser optimization</title>
+</head>
+
+<body class="logged-in env-production full-width no-footer intent-mouse">
+
+
+<div class="position-relative js-header-wrapper ">
+    <a href="#start-of-content" tabindex="1" class="bg-black text-white p-3 show-on-focus js-skip-to-content">Skip to content</a>
+    <div id="js-pjax-loader-bar" class="pjax-loader-bar"><div class="progress"></div></div>
+
+
+    <header class="Header  f5" role="banner">
+        <div class="d-flex px-3 flex-justify-between container-lg">
+            <div class="d-flex flex-justify-between">
+                <a class="header-logo-invertocat" href="https://summerofcode.withgoogle.com/projects/#4766617924796416" aria-label="Homepage">
+                    <img src="images/GSoC.png" alt="GSoC project page" height="50" width="50">
+                </a>
+
+
+            </div>
+
+            <div class="HeaderMenu d-flex flex-justify-between flex-auto">
+                <div class="d-flex">
+
+
+
+                </div>
+            </div>
+        </div>
+    </header>
+
+
+
+
+</div>
+
+<div role="main">
+    <div itemscope="" itemtype="http://schema.org/SoftwareSourceCode">
+        <div id="js-repo-pjax-container" data-pjax-container="">
+
+
+            <div class="pagehead repohead instapaper_ignore readability-menu experiment-repo-nav">
+                <div class="container repohead-details-container">
+
+                    <h1 class="public ">
+                        <svg aria-hidden="true" class="octicon octicon-repo" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M4 9H3V8h1v1zm0-3H3v1h1V6zm0-2H3v1h1V4zm0-2H3v1h1V2zm8-1v12c0 .55-.45 1-1 1H6v2l-1.5-1.5L3 16v-2H1c-.55 0-1-.45-1-1V1c0-.55.45-1 1-1h10c.55 0 1 .45 1 1zm-1 10H1v2h2v-1h3v1h5v-2zm0-10H2v9h9V1z"></path></svg>
+                        <span class="author" itemprop="author"><a href="/checkstyle" class="url fn" rel="author">checkstyle</a></span><!--
+--><span class="path-divider">/</span><!--
+--><strong itemprop="name"><a href="/checkstyle/checkstyle" data-pjax="#js-repo-pjax-container">checkstyle</a></strong>
+
+                    </h1>
+
+                </div>
+                <div class="container">
+
+                    <nav class="reponav js-repo-nav js-sidenav-container-pjax" itemscope="" itemtype="http://schema.org/BreadcrumbList" role="navigation" data-pjax="#js-repo-pjax-container">
+
+  <span itemscope="" itemtype="http://schema.org/ListItem" itemprop="itemListElement">
+    <a href="/checkstyle/checkstyle" class="js-selected-navigation-item reponav-item" data-hotkey="g c" data-selected-links="repo_source repo_downloads repo_commits repo_releases repo_tags repo_branches /checkstyle/checkstyle" itemprop="url">
+      <svg aria-hidden="true" class="octicon octicon-code" height="16" version="1.1" viewBox="0 0 14 16" width="14"><path fill-rule="evenodd" d="M9.5 3L8 4.5 11.5 8 8 11.5 9.5 13 14 8 9.5 3zm-5 0L0 8l4.5 5L6 11.5 2.5 8 6 4.5 4.5 3z"></path></svg>
+      <span itemprop="name">My Fork</span>
+      <meta itemprop="position" content="1">
+</a>  </span>
+
+                        <span itemscope="" itemtype="http://schema.org/ListItem" itemprop="itemListElement">
+      <a href="commits.html" class="js-selected-navigation-item reponav-item" data-hotkey="g i" data-selected-links="commits.html" itemprop="url">
+        <svg class="octicon octicon-issue-opened" height="16" version="1.1" viewBox="0 0 14 16" width="14"><path fill-rule="evenodd" d="M7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 0 1 1.3 8c0-3.14 2.56-5.7 5.7-5.7zM7 1C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7zm1 3H6v5h2V4zm0 6H6v2h2v-2z"></path></svg>
+        <span itemprop="name">My commits</span>
+        <span class="Counter">40</span>
+        <meta itemprop="position" content="2">
+</a>    </span>
+
+                        <span itemscope="" itemtype="http://schema.org/ListItem" itemprop="itemListElement">
+    <a href="/checkstyle/checkstyle/pulls" class="js-selected-navigation-item reponav-item" data-hotkey="g p" data-selected-links="repo_pulls /checkstyle/checkstyle/pulls" itemprop="url">
+      <svg aria-hidden="true" class="octicon octicon-git-pull-request" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M11 11.28V5c-.03-.78-.34-1.47-.94-2.06C9.46 2.35 8.78 2.03 8 2H7V0L4 3l3 3V4h1c.27.02.48.11.69.31.21.2.3.42.31.69v6.28A1.993 1.993 0 0 0 10 15a1.993 1.993 0 0 0 1-3.72zm-1 2.92c-.66 0-1.2-.55-1.2-1.2 0-.65.55-1.2 1.2-1.2.65 0 1.2.55 1.2 1.2 0 .65-.55 1.2-1.2 1.2zM4 3c0-1.11-.89-2-2-2a1.993 1.993 0 0 0-1 3.72v6.56A1.993 1.993 0 0 0 2 15a1.993 1.993 0 0 0 1-3.72V4.72c.59-.34 1-.98 1-1.72zm-.8 10c0 .66-.55 1.2-1.2 1.2-.65 0-1.2-.55-1.2-1.2 0-.65.55-1.2 1.2-1.2.65 0 1.2.55 1.2 1.2zM2 4.2C1.34 4.2.8 3.65.8 3c0-.65.55-1.2 1.2-1.2.65 0 1.2.55 1.2 1.2 0 .65-.55 1.2-1.2 1.2z"></path></svg>
+      <span itemprop="name">My PRs</span>
+      <span class="Counter">32</span>
+      <meta itemprop="position" content="3">
+</a>  </span>
+
+                        <a href="/checkstyle/checkstyle/projects" class="js-selected-navigation-item selected reponav-item" data-selected-links="repo_projects new_repo_project repo_project /checkstyle/checkstyle/projects">
+                            <svg aria-hidden="true" class="octicon octicon-project" height="16" version="1.1" viewBox="0 0 15 16" width="15"><path fill-rule="evenodd" d="M10 12h3V2h-3v10zm-4-2h3V2H6v8zm-4 4h3V2H2v12zm-1 1h13V1H1v14zM14 0H1a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h13a1 1 0 0 0 1-1V1a1 1 0 0 0-1-1z"></path></svg>
+                            Issues
+                            <span class="Counter">54</span>
+                        </a>
+                        <a href="/checkstyle/checkstyle/wiki" class="js-selected-navigation-item reponav-item" data-hotkey="g w" data-selected-links="repo_wiki /checkstyle/checkstyle/wiki">
+                            <svg aria-hidden="true" class="octicon octicon-book" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M3 5h4v1H3V5zm0 3h4V7H3v1zm0 2h4V9H3v1zm11-5h-4v1h4V5zm0 2h-4v1h4V7zm0 2h-4v1h4V9zm2-6v9c0 .55-.45 1-1 1H9.5l-1 1-1-1H2c-.55 0-1-.45-1-1V3c0-.55.45-1 1-1h5.5l1 1 1-1H15c.55 0 1 .45 1 1zm-8 .5L7.5 3H2v9h6V3.5zm7-.5H9.5l-.5.5V12h6V3z"></path></svg>
+                            Wiki
+                        </a>
+
+                        <div class="reponav-dropdown js-menu-container">
+                            <button type="button" class="btn-link reponav-item reponav-dropdown js-menu-target " data-no-toggle="" aria-expanded="false" aria-haspopup="true">
+                                Insights
+                                <svg aria-hidden="true" class="octicon octicon-triangle-down v-align-middle text-gray" height="11" version="1.1" viewBox="0 0 12 16" width="8"><path fill-rule="evenodd" d="M0 5l6 6 6-6z"></path></svg>
+                            </button>
+                            <div class="dropdown-menu-content js-menu-content">
+                                <div class="dropdown-menu dropdown-menu-sw">
+                                    <a class="dropdown-item" href="https://github.com/checkstyle/checkstyle/pulse" data-skip-pjax="">
+                                        <svg aria-hidden="true" class="octicon octicon-pulse" height="16" version="1.1" viewBox="0 0 14 16" width="14"><path fill-rule="evenodd" d="M11.5 8L8.8 5.4 6.6 8.5 5.5 1.6 2.38 8H0v2h3.6l.9-1.8.9 5.4L9 8.5l1.6 1.5H14V8z"></path></svg>
+                                        Pulse
+                                    </a>
+                                    <a class="dropdown-item" href="https://github.com/checkstyle/checkstyle/graphs" data-skip-pjax="">
+                                        <svg aria-hidden="true" class="octicon octicon-graph" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M16 14v1H0V0h1v14h15zM5 13H3V8h2v5zm4 0H7V3h2v10zm4 0h-2V6h2v7z"></path></svg>
+                                        Graphs
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </nav>
+
+                </div>
+            </div>
+
+            <div class="container new-discussion-timeline experiment-repo-nav">
+                <div class="repository-content">
+
+
+
+                    <div class="wants-full-width-container"></div>
+                    <div class="js-client-uid" data-uid="f0f620ad401c756048f73a59f9fd6ede"></div>
+
+                    <div class="position-relative clearfix">
+                        <div class="d-flex flex-row flex-justify-between project-header pt-2 pb-3 px-5 border-bottom">
+                            <div class="project-updated-message js-project-updated-message text-normal d-none f6 px-4 py-2 rounded-1 text-center"></div>
+                            <div class="d-flex flex-justify-between flex-items-center f6">
+                                <h3 class="d-flex flex-items-center f5">
+                                    <a class="header-logo-invertocat project-header-link" href="/" aria-label="Homepage" data-ga-click="Header, go to dashboard, icon:logo">
+                                        <svg aria-hidden="true" class="octicon octicon-mark-github" height="28" version="1.1" viewBox="0 0 16 16" width="28"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path></svg>
+                                    </a>
+                                    <div class="project-breadcrumb text-normal v-align-bottom">
+                                        <svg aria-hidden="true" class="octicon octicon-repo v-align-middle" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M4 9H3V8h1v1zm0-3H3v1h1V6zm0-2H3v1h1V4zm0-2H3v1h1V2zm8-1v12c0 .55-.45 1-1 1H6v2l-1.5-1.5L3 16v-2H1c-.55 0-1-.45-1-1V1c0-.55.45-1 1-1h10c.55 0 1 .45 1 1zm-1 10H1v2h2v-1h3v1h5v-2zm0-10H2v9h9V1z"></path></svg>
+                                        <span class="author">
+                <a href="/checkstyle">checkstyle</a>
+              </span>
+                                        <span class="path-divider">/</span>
+                                        <span class="author">
+                <span itemprop="name">
+                  <a href="/checkstyle/checkstyle" class="url fn">checkstyle</a>
+                </span>
+              </span>
+
+                                        <span class="ml-2 mr-2 text-gray-light"><svg aria-hidden="true" class="octicon octicon-chevron-right" height="16" version="1.1" viewBox="0 0 8 16" width="8"><path fill-rule="evenodd" d="M7.5 8l-5 5L1 11.5 4.75 8 1 4.5 2.5 3z"></path></svg></span>
+                                        <span>
+              <a href="/checkstyle/checkstyle/projects">Projects</a>
+            </span>
+                                        <span class="ml-2 mr-2 text-gray-light"><svg aria-hidden="true" class="octicon octicon-chevron-right" height="16" version="1.1" viewBox="0 0 8 16" width="8"><path fill-rule="evenodd" d="M7.5 8l-5 5L1 11.5 4.75 8 1 4.5 2.5 3z"></path></svg></span>
+                                    </div>
+                                    Javadoc style coverage and parser optimization
+                                </h3>
+                            </div>
+
+                            <div class="d-flex flex-row flex-items-center f6">
+                                <div class="d-flex flex-row pr-4">
+                                    <div class="subnav-search float-right">
+                                        <input type="search" name="card_filter_query" class="form-control subnav-search-input pr-5 js-card-filter-input js-navigation-enable" value="" aria-label="Filter cards" placeholder="Filter cards">
+                                        <svg aria-hidden="true" class="octicon octicon-search subnav-search-icon" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M15.7 13.3l-3.81-3.83A5.93 5.93 0 0 0 13 6c0-3.31-2.69-6-6-6S1 2.69 1 6s2.69 6 6 6c1.3 0 2.48-.41 3.47-1.11l3.83 3.81c.19.2.45.3.7.3.25 0 .52-.09.7-.3a.996.996 0 0 0 0-1.41v.01zM7 10.7c-2.59 0-4.7-2.11-4.7-4.7 0-2.59 2.11-4.7 4.7-4.7 2.59 0 4.7 2.11 4.7 4.7 0 2.59-2.11 4.7-4.7 4.7z"></path></svg>
+                                        <button type="button" class="project-clear-filter issues-reset-query rounded-1 btn-link muted-link d-none js-card-filter-clear" aria-label="Clear filters">
+                                            <svg aria-hidden="true" class="octicon octicon-x issues-reset-query-icon" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M7.48 8l3.75 3.75-1.48 1.48L6 9.48l-3.75 3.75-1.48-1.48L4.52 8 .77 4.25l1.48-1.48L6 6.52l3.75-3.75 1.48 1.48z"></path></svg>
+                                        </button>
+
+                                        <div class="card-filter-autocomplete-dropdown boxed-group-list border boxed-group-standalone rounded-1 mt-1 d-none js-card-filter-suggester js-navigation-container js-active-navigation-container">
+                                            <div class="autocomplete-keyword-only f6 text-gray text-normal p-2 js-card-filter-suggester-helper-container">
+                                                Search project for
+                                                "<span class="text-gray-dark text-bold js-card-filter-suggester-helper"></span>"
+                                                <span class="border rounded-1 px-1">enter ↵</span>
+                                            </div>
+                                            <div class="autocomplete-list">
+                                                <h6 class="autocomplete-list width-full border-bottom bg-white text-gray text-normal py-2 mb-2 js-card-filter-suggestions-header">
+                                                    <span class="pr-2">Narrow your search</span>
+                                                </h6>
+
+                                                <div class="autocomplete-text border-bottom-0 rounded-1 py-1 px-2 mx-0 mb-1 js-card-filter-suggestion js-navigation-item" data-value="assignee:">
+                  <span class="text-bold">
+                    assignee:
+                  </span>
+                                                    <span class="autocomplete-text-qualifier text-normal pr-3">
+                    ps-sp
+                  </span>
+                                                </div>
+
+                                                <div class="autocomplete-text border-bottom-0 rounded-1 py-1 px-2 mx-0 mb-1 js-card-filter-suggestion js-navigation-item" data-value="author:">
+                  <span class="text-bold">
+                    author:
+                  </span>
+                                                    <span class="autocomplete-text-qualifier text-normal pr-3">
+                    ps-sp
+                  </span>
+                                                </div>
+
+                                                <div class="autocomplete-text border-bottom-0 rounded-1 py-1 px-2 mx-0 mb-1 js-card-filter-suggestion js-navigation-item" data-value="is:">
+                  <span class="text-bold">
+                    is:
+                  </span>
+                                                    <span class="autocomplete-text-qualifier text-normal pr-3">
+                    open, merged, closed, issue, pr, note
+                  </span>
+                                                </div>
+
+                                                <div class="autocomplete-text border-bottom-0 rounded-1 py-1 px-2 mx-0 mb-1 js-card-filter-suggestion js-navigation-item" data-value="label:">
+                  <span class="text-bold">
+                    label:
+                  </span>
+                                                    <span class="autocomplete-text-qualifier text-normal pr-3">
+                    bug, enhancement, "multi word label"
+                  </span>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button class="btn-link project-header-link v-align-middle no-underline js-show-project-menu" type="button" aria-haspop="true">
+                                    <svg aria-hidden="true" class="octicon octicon-three-bars" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M11.41 9H.59C0 9 0 8.59 0 8c0-.59 0-1 .59-1H11.4c.59 0 .59.41.59 1 0 .59 0 1-.59 1h.01zm0-4H.59C0 5 0 4.59 0 4c0-.59 0-1 .59-1H11.4c.59 0 .59.41.59 1 0 .59 0 1-.59 1h.01zM.59 11H11.4c.59 0 .59.41.59 1 0 .59 0 1-.59 1H.59C0 13 0 12.59 0 12c0-.59 0-1 .59-1z"></path></svg>
+                                    Show menu
+                                </button>
+
+                            </div>
+                        </div>
+
+                        <div class="project-columns d-flex flex-column pt-3 pl-5 clearfix position-relative">
+
+
+                            <div class="project-columns-container d-flex flex-row pb-3 position-relative js-project-columns-container js-socket-channel " data-url="/checkstyle/checkstyle/projects/4.json" data-cards-url="/checkstyle/checkstyle/projects/4/cards" data-columns-url="/checkstyle/checkstyle/projects/4/columns" data-channel="projects:598722">
+
+                                <div class="project-column position-relative d-flex flex-column overflow-hidden mr-3 height-full v-align-top bg-gray-light border rounded-1 js-project-column js-socket-channel" id="project-column-1298080" data-url="/checkstyle/checkstyle/projects/4/columns/1298080" data-id="1298080">
+
+                                    <div class="bg-gray-light border-bottom py-2 px-3 border-bottom clearfix js-details-container Details">
+                                        <h4 class="m-0 f5 v-align-middle d-inline">
+                                            <span class="js-project-column-name">Issues with regex-based checks</span>
+                                            <span class="Counter ml-1 position-relative js-column-card-count" aria-label="Contains 23 items">23</span>
+                                        </h4>
+                                    </div>
+
+                                    <p class="js-filtered-column-card-count mt-2 mb-0 f6 text-center text-gray-light d-none"></p>
+
+                                    <div id="column-cards-1298080" class="position-relative overflow-auto p-2 js-project-column-cards  height-full" data-id="1298080">
+                                        <div class="issue-card project-card pl-5 p-2 mb-2 border border-gray rounded-1 js-project-column-card js-socket-channel js-updatable-content bg-white" id="card-2848646" data-channel="projects:cards:2848646" data-card-id="2848646" data-content-type="Issue" data-content-id="69621454" data-card-assignee="[]" data-card-author="[&quot;msteiger&quot;]" data-card-label="[&quot;approved&quot;,&quot;gsoc2017&quot;,&quot;javadoc&quot;]" data-card-repo="[&quot;checkstyle/checkstyle&quot;]" data-card-state="[&quot;open&quot;]" data-card-title="[&quot;writetag&quot;,&quot;not&quot;,&quot;triggered&quot;,&quot;when&quot;,&quot;on&quot;,&quot;ignore&quot;,&quot;952&quot;,&quot;#952&quot;]" data-card-type="[&quot;issue&quot;]" data-card-is="[&quot;open&quot;,&quot;issue&quot;]">
+
+  
+<span class="card-octicon position-absolute text-green">
+  <svg aria-label="Open Issue" class="octicon octicon-issue-opened open" height="16" role="img" version="1.1" viewBox="0 0 14 16" width="14"><path fill-rule="evenodd" d="M7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 0 1 1.3 8c0-3.14 2.56-5.7 5.7-5.7zM7 1C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7zm1 3H6v5h2V4zm0 6H6v2h2v-2z"></path></svg>
+</span>
+
+                                            <a href="https://github.com/checkstyle/checkstyle/issues/952" class="h5 d-block lh-condensed mr-4 mb-1">WriteTag not triggered when on ignore</a>
+
+
+
+                                            <small class="text-gray d-block ">
+                                                #952 opened by <a href="https://github.com/msteiger" class="text-gray-dark">msteiger</a>
+                                            </small>
+
+
+                                            <span class="labels d-block pb-1 ">
+      <span aria-label="View all approved" class="issue-card-label css-truncate css-truncate-target label mt-1 v-align-middle labelstyle-009800 linked-labelstyle-009800 tooltipped tooltipped-n" style="background-color: #009800; color: #fff;">approved</span>
+      <span aria-label="View all GSoC2017" class="issue-card-label css-truncate css-truncate-target label mt-1 v-align-middle labelstyle-fbca04 linked-labelstyle-fbca04 tooltipped tooltipped-n" style="background-color: #fbca04; color: #332900;">GSoC2017</span>
+      <span aria-label="View all javadoc" class="issue-card-label css-truncate css-truncate-target label mt-1 v-align-middle labelstyle-f7c6c7 linked-labelstyle-f7c6c7 tooltipped tooltipped-n" style="background-color: #f7c6c7; color: #332829;">javadoc</span>
+  </span>
+
+
+                                        </div>
+
+                                        <div class="issue-card project-card pl-5 p-2 mb-2 border border-gray rounded-1 js-project-column-card js-socket-channel js-updatable-content bg-white" id="card-2848637" data-channel="projects:cards:2848637" data-card-id="2848637" data-content-type="Issue" data-content-id="112676169" data-card-assignee="[]" data-card-author="[&quot;romani&quot;]" data-card-label="[&quot;approved&quot;,&quot;easy&quot;,&quot;gsoc2017&quot;,&quot;javadoc&quot;]" data-card-repo="[&quot;checkstyle/checkstyle&quot;]" data-card-state="[&quot;open&quot;]" data-card-title="[&quot;javadocmethod:&quot;,&quot;unclear&quot;,&quot;message&quot;,&quot;for&quot;,&quot;incomplete&quot;,&quot;tag&quot;,&quot;2408&quot;,&quot;#2408&quot;]" data-card-type="[&quot;issue&quot;]" data-card-is="[&quot;open&quot;,&quot;issue&quot;]">
+
+  
+<span class="card-octicon position-absolute text-green">
+  <svg aria-label="Open Issue" class="octicon octicon-issue-opened open" height="16" role="img" version="1.1" viewBox="0 0 14 16" width="14"><path fill-rule="evenodd" d="M7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 0 1 1.3 8c0-3.14 2.56-5.7 5.7-5.7zM7 1C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7zm1 3H6v5h2V4zm0 6H6v2h2v-2z"></path></svg>
+</span>
+
+                                            <a href="https://github.com/checkstyle/checkstyle/issues/2408" class="h5 d-block lh-condensed mr-4 mb-1">JavadocMethod: unclear message for incomplete tag</a>
+
+
+
+                                            <small class="text-gray d-block ">
+                                                #2408 opened by <a href="https://github.com/romani" class="text-gray-dark">romani</a>
+                                            </small>
+
+
+                                            <span class="labels d-block pb-1 ">
+      <span aria-label="View all approved" class="issue-card-label css-truncate css-truncate-target label mt-1 v-align-middle labelstyle-009800 linked-labelstyle-009800 tooltipped tooltipped-n" style="background-color: #009800; color: #fff;">approved</span>
+      <span aria-label="View all easy" class="issue-card-label css-truncate css-truncate-target label mt-1 v-align-middle labelstyle-c2e0c6 linked-labelstyle-c2e0c6 tooltipped tooltipped-n" style="background-color: #c2e0c6; color: #2c332d;">easy</span>
+      <span aria-label="View all GSoC2017" class="issue-card-label css-truncate css-truncate-target label mt-1 v-align-middle labelstyle-fbca04 linked-labelstyle-fbca04 tooltipped tooltipped-n" style="background-color: #fbca04; color: #332900;">GSoC2017</span>
+      <span aria-label="View all javadoc" class="issue-card-label css-truncate css-truncate-target label mt-1 v-align-middle labelstyle-f7c6c7 linked-labelstyle-f7c6c7 tooltipped tooltipped-n" style="background-color: #f7c6c7; color: #332829;">javadoc</span>
+  </span>
+
+
+                                        </div>
+
+                                        <div class="issue-card project-card pl-5 p-2 mb-2 border border-gray rounded-1 js-project-column-card js-socket-channel js-updatable-content bg-white" id="card-2848635" data-channel="projects:cards:2848635" data-card-id="2848635" data-content-type="Issue" data-content-id="112685439" data-card-assignee="[]" data-card-author="[&quot;romani&quot;]" data-card-label="[&quot;approved&quot;,&quot;gsoc2017&quot;,&quot;javadoc&quot;]" data-card-repo="[&quot;checkstyle/checkstyle&quot;]" data-card-state="[&quot;open&quot;]" data-card-title="[&quot;javadocstyle:&quot;,&quot;problem&quot;,&quot;with&quot;,&quot;inline&quot;,&quot;tags&quot;,&quot;that&quot;,&quot;contain&quot;,&quot;non-escaped&quot;,&quot;html&quot;,&quot;symbols&quot;,&quot;2413&quot;,&quot;#2413&quot;]" data-card-type="[&quot;issue&quot;]" data-card-is="[&quot;open&quot;,&quot;issue&quot;]">
+
+  
+<span class="card-octicon position-absolute text-green">
+  <svg aria-label="Open Issue" class="octicon octicon-issue-opened open" height="16" role="img" version="1.1" viewBox="0 0 14 16" width="14"><path fill-rule="evenodd" d="M7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 0 1 1.3 8c0-3.14 2.56-5.7 5.7-5.7zM7 1C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7zm1 3H6v5h2V4zm0 6H6v2h2v-2z"></path></svg>
+</span>
+
+                                            <a href="https://github.com/checkstyle/checkstyle/issues/2413" class="h5 d-block lh-condensed mr-4 mb-1">JavadocStyle:  problem with inline tags that contain non-escaped HTML symbols</a>
+
+
+
+                                            <small class="text-gray d-block ">
+                                                #2413 opened by <a href="https://github.com/romani" class="text-gray-dark">romani</a>
+                                            </small>
+
+
+                                            <span class="labels d-block pb-1 ">
+      <span aria-label="View all approved" class="issue-card-label css-truncate css-truncate-target label mt-1 v-align-middle labelstyle-009800 linked-labelstyle-009800 tooltipped tooltipped-n" style="background-color: #009800; color: #fff;">approved</span>
+      <span aria-label="View all GSoC2017" class="issue-card-label css-truncate css-truncate-target label mt-1 v-align-middle labelstyle-fbca04 linked-labelstyle-fbca04 tooltipped tooltipped-n" style="background-color: #fbca04; color: #332900;">GSoC2017</span>
+      <span aria-label="View all javadoc" class="issue-card-label css-truncate css-truncate-target label mt-1 v-align-middle labelstyle-f7c6c7 linked-labelstyle-f7c6c7 tooltipped tooltipped-n" style="background-color: #f7c6c7; color: #332829;">javadoc</span>
+  </span>
+
+
+                                        </div>
+
+                                        <div class="issue-card project-card pl-5 p-2 mb-2 border border-gray rounded-1 js-project-column-card js-socket-channel js-updatable-content bg-white" id="card-2848636" data-channel="projects:cards:2848636" data-card-id="2848636" data-content-type="Issue" data-content-id="112680815" data-card-assignee="[]" data-card-author="[&quot;romani&quot;]" data-card-label="[&quot;approved&quot;,&quot;easy&quot;,&quot;gsoc2017&quot;,&quot;javadoc&quot;]" data-card-repo="[&quot;checkstyle/checkstyle&quot;]" data-card-state="[&quot;open&quot;]" data-card-title="[&quot;javadocstylecheck:&quot;,&quot;need&quot;,&quot;to&quot;,&quot;support&quot;,&quot;var&quot;,&quot;html&quot;,&quot;tag&quot;,&quot;2410&quot;,&quot;#2410&quot;]" data-card-type="[&quot;issue&quot;]" data-card-is="[&quot;open&quot;,&quot;issue&quot;]">
+
+  
+<span class="card-octicon position-absolute text-green">
+  <svg aria-label="Open Issue" class="octicon octicon-issue-opened open" height="16" role="img" version="1.1" viewBox="0 0 14 16" width="14"><path fill-rule="evenodd" d="M7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 0 1 1.3 8c0-3.14 2.56-5.7 5.7-5.7zM7 1C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7zm1 3H6v5h2V4zm0 6H6v2h2v-2z"></path></svg>
+</span>
+
+                                            <a href="https://github.com/checkstyle/checkstyle/issues/2410" class="h5 d-block lh-condensed mr-4 mb-1">JavadocStyleCheck: need to support VAR html tag </a>
+
+
+
+                                            <small class="text-gray d-block ">
+                                                #2410 opened by <a href="https://github.com/romani" class="text-gray-dark">romani</a>
+                                            </small>
+
+
+                                            <span class="labels d-block pb-1 ">
+      <span aria-label="View all approved" class="issue-card-label css-truncate css-truncate-target label mt-1 v-align-middle labelstyle-009800 linked-labelstyle-009800 tooltipped tooltipped-n" style="background-color: #009800; color: #fff;">approved</span>
+      <span aria-label="View all easy" class="issue-card-label css-truncate css-truncate-target label mt-1 v-align-middle labelstyle-c2e0c6 linked-labelstyle-c2e0c6 tooltipped tooltipped-n" style="background-color: #c2e0c6; color: #2c332d;">easy</span>
+      <span aria-label="View all GSoC2017" class="issue-card-label css-truncate css-truncate-target label mt-1 v-align-middle labelstyle-fbca04 linked-labelstyle-fbca04 tooltipped tooltipped-n" style="background-color: #fbca04; color: #332900;">GSoC2017</span>
+      <span aria-label="View all javadoc" class="issue-card-label css-truncate css-truncate-target label mt-1 v-align-middle labelstyle-f7c6c7 linked-labelstyle-f7c6c7 tooltipped tooltipped-n" style="background-color: #f7c6c7; color: #332829;">javadoc</span>
+  </span>
+
+
+                                        </div>
+
+                                        <div class="issue-card project-card pl-5 p-2 mb-2 border border-gray rounded-1 js-project-column-card js-socket-channel js-updatable-content bg-white" id="card-2848629" data-channel="projects:cards:2848629" data-card-id="2848629" data-content-type="Issue" data-content-id="126994154" data-card-assignee="[]" data-card-author="[&quot;rnveach&quot;]" data-card-label="[&quot;approved&quot;,&quot;easy&quot;,&quot;gsoc2017&quot;,&quot;javadoc&quot;]" data-card-repo="[&quot;checkstyle/checkstyle&quot;]" data-card-state="[&quot;open&quot;]" data-card-title="[&quot;javadocmethod&quot;,&quot;doesn't&quot;,&quot;report&quot;,&quot;anonymous&quot;,&quot;class&quot;,&quot;methods&quot;,&quot;2827&quot;,&quot;#2827&quot;]" data-card-type="[&quot;issue&quot;]" data-card-is="[&quot;open&quot;,&quot;issue&quot;]">
+
+  
+<span class="card-octicon position-absolute text-green">
+  <svg aria-label="Open Issue" class="octicon octicon-issue-opened open" height="16" role="img" version="1.1" viewBox="0 0 14 16" width="14"><path fill-rule="evenodd" d="M7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 0 1 1.3 8c0-3.14 2.56-5.7 5.7-5.7zM7 1C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7zm1 3H6v5h2V4zm0 6H6v2h2v-2z"></path></svg>
+</span>
+
+                                            <a href="https://github.com/checkstyle/checkstyle/issues/2827" class="h5 d-block lh-condensed mr-4 mb-1">JavadocMethod doesn't report anonymous class methods</a>
+
+
+
+                                            <small class="text-gray d-block ">
+                                                #2827 opened by <a href="https://github.com/rnveach" class="text-gray-dark">rnveach</a>
+                                            </small>
+
+
+                                            <span class="labels d-block pb-1 ">
+      <span aria-label="View all approved" class="issue-card-label css-truncate css-truncate-target label mt-1 v-align-middle labelstyle-009800 linked-labelstyle-009800 tooltipped tooltipped-n" style="background-color: #009800; color: #fff;">approved</span>
+      <span aria-label="View all easy" class="issue-card-label css-truncate css-truncate-target label mt-1 v-align-middle labelstyle-c2e0c6 linked-labelstyle-c2e0c6 tooltipped tooltipped-n" style="background-color: #c2e0c6; color: #2c332d;">easy</span>
+      <span aria-label="View all GSoC2017" class="issue-card-label css-truncate css-truncate-target label mt-1 v-align-middle labelstyle-fbca04 linked-labelstyle-fbca04 tooltipped tooltipped-n" style="background-color: #fbca04; color: #332900;">GSoC2017</span>
+      <span aria-label="View all javadoc" class="issue-card-label css-truncate css-truncate-target label mt-1 v-align-middle labelstyle-f7c6c7 linked-labelstyle-f7c6c7 tooltipped tooltipped-n" style="background-color: #f7c6c7; color: #332829;">javadoc</span>
+  </span>
+
+
+                                        </div>
+
+                                        <div class="issue-card project-card pl-5 p-2 mb-2 border border-gray rounded-1 js-project-column-card js-socket-channel js-updatable-content bg-white" id="card-2848624" data-channel="projects:cards:2848624" data-card-id="2848624" data-content-type="Issue" data-content-id="155241906" data-card-assignee="[]" data-card-author="[&quot;edrandall&quot;]" data-card-label="[&quot;approved&quot;,&quot;easy&quot;,&quot;gsoc2017&quot;,&quot;javadoc&quot;]" data-card-repo="[&quot;checkstyle/checkstyle&quot;]" data-card-state="[&quot;open&quot;]" data-card-title="[&quot;javadocvariable&quot;,&quot;doesn't&quot;,&quot;report&quot;,&quot;missing&quot;,&quot;comment&quot;,&quot;when&quot;,&quot;excludescope=anoninner&quot;,&quot;3183&quot;,&quot;#3183&quot;]" data-card-type="[&quot;issue&quot;]" data-card-is="[&quot;open&quot;,&quot;issue&quot;]">
+
+  
+<span class="card-octicon position-absolute text-green">
+  <svg aria-label="Open Issue" class="octicon octicon-issue-opened open" height="16" role="img" version="1.1" viewBox="0 0 14 16" width="14"><path fill-rule="evenodd" d="M7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 0 1 1.3 8c0-3.14 2.56-5.7 5.7-5.7zM7 1C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7zm1 3H6v5h2V4zm0 6H6v2h2v-2z"></path></svg>
+</span>
+
+                                            <a href="https://github.com/checkstyle/checkstyle/issues/3183" class="h5 d-block lh-condensed mr-4 mb-1">JavadocVariable doesn't report missing comment when excludeScope=anoninner</a>
+
+
+
+                                            <small class="text-gray d-block ">
+                                                #3183 opened by <a href="https://github.com/edrandall" class="text-gray-dark">edrandall</a>
+                                            </small>
+
+
+                                            <span class="labels d-block pb-1 ">
+      <span aria-label="View all approved" class="issue-card-label css-truncate css-truncate-target label mt-1 v-align-middle labelstyle-009800 linked-labelstyle-009800 tooltipped tooltipped-n" style="background-color: #009800; color: #fff;">approved</span>
+      <span aria-label="View all easy" class="issue-card-label css-truncate css-truncate-target label mt-1 v-align-middle labelstyle-c2e0c6 linked-labelstyle-c2e0c6 tooltipped tooltipped-n" style="background-color: #c2e0c6; color: #2c332d;">easy</span>
+      <span aria-label="View all GSoC2017" class="issue-card-label css-truncate css-truncate-target label mt-1 v-align-middle labelstyle-fbca04 linked-labelstyle-fbca04 tooltipped tooltipped-n" style="background-color: #fbca04; color: #332900;">GSoC2017</span>
+      <span aria-label="View all javadoc" class="issue-card-label css-truncate css-truncate-target label mt-1 v-align-middle labelstyle-f7c6c7 linked-labelstyle-f7c6c7 tooltipped tooltipped-n" style="background-color: #f7c6c7; color: #332829;">javadoc</span>
+  </span>
+
+
+                                        </div>
+
+                                        <div class="issue-card project-card pl-5 p-2 mb-2 border border-gray rounded-1 js-project-column-card js-socket-channel js-updatable-content bg-white" id="card-2848623" data-channel="projects:cards:2848623" data-card-id="2848623" data-content-type="Issue" data-content-id="158140458" data-card-assignee="[]" data-card-author="[&quot;romani&quot;]" data-card-label="[&quot;approved&quot;,&quot;gsoc2017&quot;,&quot;javadoc&quot;]" data-card-repo="[&quot;checkstyle/checkstyle&quot;]" data-card-state="[&quot;open&quot;]" data-card-title="[&quot;javadocstyle:&quot;,&quot;new&quot;,&quot;options&quot;,&quot;to&quot;,&quot;support&quot;,&quot;different&quot;,&quot;html&quot;,&quot;tags&quot;,&quot;3241&quot;,&quot;#3241&quot;]" data-card-type="[&quot;issue&quot;]" data-card-is="[&quot;open&quot;,&quot;issue&quot;]">
+
+  
+<span class="card-octicon position-absolute text-green">
+  <svg aria-label="Open Issue" class="octicon octicon-issue-opened open" height="16" role="img" version="1.1" viewBox="0 0 14 16" width="14"><path fill-rule="evenodd" d="M7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 0 1 1.3 8c0-3.14 2.56-5.7 5.7-5.7zM7 1C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7zm1 3H6v5h2V4zm0 6H6v2h2v-2z"></path></svg>
+</span>
+
+                                            <a href="https://github.com/checkstyle/checkstyle/issues/3241" class="h5 d-block lh-condensed mr-4 mb-1">JavadocStyle: new options to support different HTML tags</a>
+
+
+
+                                            <small class="text-gray d-block ">
+                                                #3241 opened by <a href="https://github.com/romani" class="text-gray-dark">romani</a>
+                                            </small>
+
+
+                                            <span class="labels d-block pb-1 ">
+      <span aria-label="View all approved" class="issue-card-label css-truncate css-truncate-target label mt-1 v-align-middle labelstyle-009800 linked-labelstyle-009800 tooltipped tooltipped-n" style="background-color: #009800; color: #fff;">approved</span>
+      <span aria-label="View all GSoC2017" class="issue-card-label css-truncate css-truncate-target label mt-1 v-align-middle labelstyle-fbca04 linked-labelstyle-fbca04 tooltipped tooltipped-n" style="background-color: #fbca04; color: #332900;">GSoC2017</span>
+      <span aria-label="View all javadoc" class="issue-card-label css-truncate css-truncate-target label mt-1 v-align-middle labelstyle-f7c6c7 linked-labelstyle-f7c6c7 tooltipped tooltipped-n" style="background-color: #f7c6c7; color: #332829;">javadoc</span>
+  </span>
+
+
+                                        </div>
+
+                                        <div class="issue-card project-card pl-5 p-2 mb-2 border border-gray rounded-1 js-project-column-card js-socket-channel js-updatable-content bg-white" id="card-2848621" data-channel="projects:cards:2848621" data-card-id="2848621" data-content-type="Issue" data-content-id="165821493" data-card-assignee="[]" data-card-author="[&quot;swankjesse&quot;]" data-card-label="[&quot;approved&quot;,&quot;gsoc2017&quot;,&quot;javadoc&quot;]" data-card-repo="[&quot;checkstyle/checkstyle&quot;]" data-card-state="[&quot;open&quot;]" data-card-title="[&quot;don’t&quot;,&quot;validate&quot;,&quot;html&quot;,&quot;tags&quot;,&quot;in&quot;,&quot;{@code}&quot;,&quot;blocks&quot;,&quot;3351&quot;,&quot;#3351&quot;]" data-card-type="[&quot;issue&quot;]" data-card-is="[&quot;open&quot;,&quot;issue&quot;]">
+
+  
+<span class="card-octicon position-absolute text-green">
+  <svg aria-label="Open Issue" class="octicon octicon-issue-opened open" height="16" role="img" version="1.1" viewBox="0 0 14 16" width="14"><path fill-rule="evenodd" d="M7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 0 1 1.3 8c0-3.14 2.56-5.7 5.7-5.7zM7 1C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7zm1 3H6v5h2V4zm0 6H6v2h2v-2z"></path></svg>
+</span>
+
+                                            <a href="https://github.com/checkstyle/checkstyle/issues/3351" class="h5 d-block lh-condensed mr-4 mb-1">Don’t validate HTML tags in {@code} blocks</a>
+
+
+
+                                            <small class="text-gray d-block ">
+                                                #3351 opened by <a href="https://github.com/swankjesse" class="text-gray-dark">swankjesse</a>
+                                            </small>
+
+
+                                            <span class="labels d-block pb-1 ">
+      <span aria-label="View all approved" class="issue-card-label css-truncate css-truncate-target label mt-1 v-align-middle labelstyle-009800 linked-labelstyle-009800 tooltipped tooltipped-n" style="background-color: #009800; color: #fff;">approved</span>
+      <span aria-label="View all GSoC2017" class="issue-card-label css-truncate css-truncate-target label mt-1 v-align-middle labelstyle-fbca04 linked-labelstyle-fbca04 tooltipped tooltipped-n" style="background-color: #fbca04; color: #332900;">GSoC2017</span>
+      <span aria-label="View all javadoc" class="issue-card-label css-truncate css-truncate-target label mt-1 v-align-middle labelstyle-f7c6c7 linked-labelstyle-f7c6c7 tooltipped tooltipped-n" style="background-color: #f7c6c7; color: #332829;">javadoc</span>
+  </span>
+
+
+                                        </div>
+
+                                        <div class="issue-card project-card pl-5 p-2 mb-2 border border-gray rounded-1 js-project-column-card js-socket-channel js-updatable-content bg-white" id="card-2848620" data-channel="projects:cards:2848620" data-card-id="2848620" data-content-type="Issue" data-content-id="177937332" data-card-assignee="[]" data-card-author="[&quot;liutikas&quot;]" data-card-label="[&quot;approved&quot;,&quot;gsoc2017&quot;,&quot;javadoc&quot;]" data-card-repo="[&quot;checkstyle/checkstyle&quot;]" data-card-state="[&quot;open&quot;]" data-card-title="[&quot;issue&quot;,&quot;with&quot;,&quot;unusedimports&quot;,&quot;and&quot;,&quot;javadoc&quot;,&quot;usage.&quot;,&quot;3453&quot;,&quot;#3453&quot;]" data-card-type="[&quot;issue&quot;]" data-card-is="[&quot;open&quot;,&quot;issue&quot;]">
+
+  
+<span class="card-octicon position-absolute text-green">
+  <svg aria-label="Open Issue" class="octicon octicon-issue-opened open" height="16" role="img" version="1.1" viewBox="0 0 14 16" width="14"><path fill-rule="evenodd" d="M7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 0 1 1.3 8c0-3.14 2.56-5.7 5.7-5.7zM7 1C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7zm1 3H6v5h2V4zm0 6H6v2h2v-2z"></path></svg>
+</span>
+
+                                            <a href="https://github.com/checkstyle/checkstyle/issues/3453" class="h5 d-block lh-condensed mr-4 mb-1">Issue with UnusedImports and javadoc usage.</a>
+
+
+
+                                            <small class="text-gray d-block ">
+                                                #3453 opened by <a href="https://github.com/liutikas" class="text-gray-dark">liutikas</a>
+                                            </small>
+
+
+                                            <span class="labels d-block pb-1 ">
+      <span aria-label="View all approved" class="issue-card-label css-truncate css-truncate-target label mt-1 v-align-middle labelstyle-009800 linked-labelstyle-009800 tooltipped tooltipped-n" style="background-color: #009800; color: #fff;">approved</span>
+      <span aria-label="View all GSoC2017" class="issue-card-label css-truncate css-truncate-target label mt-1 v-align-middle labelstyle-fbca04 linked-labelstyle-fbca04 tooltipped tooltipped-n" style="background-color: #fbca04; color: #332900;">GSoC2017</span>
+      <span aria-label="View all javadoc" class="issue-card-label css-truncate css-truncate-target label mt-1 v-align-middle labelstyle-f7c6c7 linked-labelstyle-f7c6c7 tooltipped tooltipped-n" style="background-color: #f7c6c7; color: #332829;">javadoc</span>
+  </span>
+
+
+                                        </div>
+
+                                        <div class="issue-card project-card pl-5 p-2 mb-2 border border-gray rounded-1 js-project-column-card js-socket-channel js-updatable-content bg-white" id="card-2848617" data-channel="projects:cards:2848617" data-card-id="2848617" data-content-type="Issue" data-content-id="192138851" data-card-assignee="[]" data-card-author="[&quot;rnveach&quot;]" data-card-label="[&quot;approved&quot;,&quot;gsoc2017&quot;,&quot;javadoc&quot;]" data-card-repo="[&quot;checkstyle/checkstyle&quot;]" data-card-state="[&quot;open&quot;]" data-card-title="[&quot;javadocstyle:&quot;,&quot;not&quot;,&quot;reporting&quot;,&quot;first&quot;,&quot;sentence&quot;,&quot;missing&quot;,&quot;when&quot;,&quot;inside&quot;,&quot;list&quot;,&quot;tag&quot;,&quot;3593&quot;,&quot;#3593&quot;]" data-card-type="[&quot;issue&quot;]" data-card-is="[&quot;open&quot;,&quot;issue&quot;]">
+
+  
+<span class="card-octicon position-absolute text-green">
+  <svg aria-label="Open Issue" class="octicon octicon-issue-opened open" height="16" role="img" version="1.1" viewBox="0 0 14 16" width="14"><path fill-rule="evenodd" d="M7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 0 1 1.3 8c0-3.14 2.56-5.7 5.7-5.7zM7 1C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7zm1 3H6v5h2V4zm0 6H6v2h2v-2z"></path></svg>
+</span>
+
+                                            <a href="https://github.com/checkstyle/checkstyle/issues/3593" class="h5 d-block lh-condensed mr-4 mb-1">JavadocStyle: not reporting first sentence missing when inside list tag</a>
+
+
+
+                                            <small class="text-gray d-block ">
+                                                #3593 opened by <a href="https://github.com/rnveach" class="text-gray-dark">rnveach</a>
+                                            </small>
+
+
+                                            <span class="labels d-block pb-1 ">
+      <span aria-label="View all approved" class="issue-card-label css-truncate css-truncate-target label mt-1 v-align-middle labelstyle-009800 linked-labelstyle-009800 tooltipped tooltipped-n" style="background-color: #009800; color: #fff;">approved</span>
+      <span aria-label="View all GSoC2017" class="issue-card-label css-truncate css-truncate-target label mt-1 v-align-middle labelstyle-fbca04 linked-labelstyle-fbca04 tooltipped tooltipped-n" style="background-color: #fbca04; color: #332900;">GSoC2017</span>
+      <span aria-label="View all javadoc" class="issue-card-label css-truncate css-truncate-target label mt-1 v-align-middle labelstyle-f7c6c7 linked-labelstyle-f7c6c7 tooltipped tooltipped-n" style="background-color: #f7c6c7; color: #332829;">javadoc</span>
+  </span>
+
+
+                                        </div>
+
+                                        <div class="issue-card project-card pl-5 p-2 mb-2 border border-gray rounded-1 js-project-column-card js-socket-channel js-updatable-content bg-white" id="card-2848654" data-channel="projects:cards:2848654" data-card-id="2848654" data-content-type="Issue" data-content-id="27123198" data-card-assignee="[]" data-card-author="[&quot;isopov&quot;]" data-card-label="[&quot;enhancement&quot;,&quot;gsoc2017&quot;,&quot;javadoc&quot;]" data-card-repo="[&quot;checkstyle/checkstyle&quot;]" data-card-state="[&quot;open&quot;]" data-card-title="[&quot;javadoc&quot;,&quot;to&quot;,&quot;accept&quot;,&quot;custom&quot;,&quot;tags&quot;,&quot;100&quot;,&quot;#100&quot;]" data-card-type="[&quot;issue&quot;]" data-card-is="[&quot;open&quot;,&quot;issue&quot;]">
+
+  
+<span class="card-octicon position-absolute text-green">
+  <svg aria-label="Open Issue" class="octicon octicon-issue-opened open" height="16" role="img" version="1.1" viewBox="0 0 14 16" width="14"><path fill-rule="evenodd" d="M7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 0 1 1.3 8c0-3.14 2.56-5.7 5.7-5.7zM7 1C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7zm1 3H6v5h2V4zm0 6H6v2h2v-2z"></path></svg>
+</span>
+
+                                            <a href="https://github.com/checkstyle/checkstyle/issues/100" class="h5 d-block lh-condensed mr-4 mb-1">Javadoc to accept custom tags</a>
+
+
+
+                                            <small class="text-gray d-block ">
+                                                #100 opened by <a href="https://github.com/isopov" class="text-gray-dark">isopov</a>
+                                            </small>
+
+
+                                            <span class="labels d-block pb-1 ">
+      <span aria-label="View all enhancement" class="issue-card-label css-truncate css-truncate-target label mt-1 v-align-middle labelstyle-84b6eb linked-labelstyle-84b6eb tooltipped tooltipped-n" style="background-color: #84b6eb; color: #1c2733;">enhancement</span>
+      <span aria-label="View all GSoC2017" class="issue-card-label css-truncate css-truncate-target label mt-1 v-align-middle labelstyle-fbca04 linked-labelstyle-fbca04 tooltipped tooltipped-n" style="background-color: #fbca04; color: #332900;">GSoC2017</span>
+      <span aria-label="View all javadoc" class="issue-card-label css-truncate css-truncate-target label mt-1 v-align-middle labelstyle-f7c6c7 linked-labelstyle-f7c6c7 tooltipped tooltipped-n" style="background-color: #f7c6c7; color: #332829;">javadoc</span>
+  </span>
+
+
+                                        </div>
+
+                                        <div class="issue-card project-card pl-5 p-2 mb-2 border border-gray rounded-1 js-project-column-card js-socket-channel js-updatable-content bg-white" id="card-2848652" data-channel="projects:cards:2848652" data-card-id="2848652" data-content-type="Issue" data-content-id="27213453" data-card-assignee="[]" data-card-author="[&quot;daniilyar&quot;]" data-card-label="[&quot;gsoc2017&quot;,&quot;javadoc&quot;]" data-card-repo="[&quot;checkstyle/checkstyle&quot;]" data-card-state="[&quot;open&quot;]" data-card-title="[&quot;javadoc:&quot;,&quot;valid&quot;,&quot;html&quot;,&quot;definitions&quot;,&quot;lists&quot;,&quot;are&quot;,&quot;erroneously&quot;,&quot;marked&quot;,&quot;104&quot;,&quot;#104&quot;]" data-card-type="[&quot;issue&quot;]" data-card-is="[&quot;open&quot;,&quot;issue&quot;]">
+
+  
+<span class="card-octicon position-absolute text-green">
+  <svg aria-label="Open Issue" class="octicon octicon-issue-opened open" height="16" role="img" version="1.1" viewBox="0 0 14 16" width="14"><path fill-rule="evenodd" d="M7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 0 1 1.3 8c0-3.14 2.56-5.7 5.7-5.7zM7 1C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7zm1 3H6v5h2V4zm0 6H6v2h2v-2z"></path></svg>
+</span>
+
+                                            <a href="https://github.com/checkstyle/checkstyle/issues/104" class="h5 d-block lh-condensed mr-4 mb-1">JavaDoc: Valid HTML definitions lists are erroneously marked</a>
+
+
+
+                                            <small class="text-gray d-block ">
+                                                #104 opened by <a href="https://github.com/daniilyar" class="text-gray-dark">daniilyar</a>
+                                            </small>
+
+
+                                            <span class="labels d-block pb-1 ">
+      <span aria-label="View all GSoC2017" class="issue-card-label css-truncate css-truncate-target label mt-1 v-align-middle labelstyle-fbca04 linked-labelstyle-fbca04 tooltipped tooltipped-n" style="background-color: #fbca04; color: #332900;">GSoC2017</span>
+      <span aria-label="View all javadoc" class="issue-card-label css-truncate css-truncate-target label mt-1 v-align-middle labelstyle-f7c6c7 linked-labelstyle-f7c6c7 tooltipped tooltipped-n" style="background-color: #f7c6c7; color: #332829;">javadoc</span>
+  </span>
+
+
+                                        </div>
+
+                                        <div class="issue-card project-card pl-5 p-2 mb-2 border border-gray rounded-1 js-project-column-card js-socket-channel js-updatable-content bg-white" id="card-2848647" data-channel="projects:cards:2848647" data-card-id="2848647" data-content-type="Issue" data-content-id="67451946" data-card-assignee="[]" data-card-author="[&quot;ryanidev&quot;]" data-card-label="[&quot;gsoc2017&quot;,&quot;javadoc&quot;]" data-card-repo="[&quot;checkstyle/checkstyle&quot;]" data-card-state="[&quot;open&quot;]" data-card-title="[&quot;javadocmethod:&quot;,&quot;new&quot;,&quot;option&quot;,&quot;to&quot;,&quot;validate&quot;,&quot;url&quot;,&quot;at&quot;,&quot;@link&quot;,&quot;915&quot;,&quot;#915&quot;]" data-card-type="[&quot;issue&quot;]" data-card-is="[&quot;open&quot;,&quot;issue&quot;]">
+
+  
+<span class="card-octicon position-absolute text-green">
+  <svg aria-label="Open Issue" class="octicon octicon-issue-opened open" height="16" role="img" version="1.1" viewBox="0 0 14 16" width="14"><path fill-rule="evenodd" d="M7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 0 1 1.3 8c0-3.14 2.56-5.7 5.7-5.7zM7 1C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7zm1 3H6v5h2V4zm0 6H6v2h2v-2z"></path></svg>
+</span>
+
+                                            <a href="https://github.com/checkstyle/checkstyle/issues/915" class="h5 d-block lh-condensed mr-4 mb-1">JavadocMethod:  new option to validate URL at @link</a>
+
+
+
+                                            <small class="text-gray d-block ">
+                                                #915 opened by <a href="https://github.com/ryanidev" class="text-gray-dark">ryanidev</a>
+                                            </small>
+
+
+                                            <span class="labels d-block pb-1 ">
+      <span aria-label="View all GSoC2017" class="issue-card-label css-truncate css-truncate-target label mt-1 v-align-middle labelstyle-fbca04 linked-labelstyle-fbca04 tooltipped tooltipped-n" style="background-color: #fbca04; color: #332900;">GSoC2017</span>
+      <span aria-label="View all javadoc" class="issue-card-label css-truncate css-truncate-target label mt-1 v-align-middle labelstyle-f7c6c7 linked-labelstyle-f7c6c7 tooltipped tooltipped-n" style="background-color: #f7c6c7; color: #332829;">javadoc</span>
+  </span>
+
+
+                                        </div>
+
+                                        <div class="issue-card project-card pl-5 p-2 mb-2 border border-gray rounded-1 js-project-column-card js-socket-channel js-updatable-content bg-white" id="card-2848649" data-channel="projects:cards:2848649" data-card-id="2848649" data-content-type="Issue" data-content-id="60143328" data-card-assignee="[]" data-card-author="[&quot;seangibbens&quot;]" data-card-label="[&quot;gsoc2017&quot;,&quot;javadoc&quot;]" data-card-repo="[&quot;checkstyle/checkstyle&quot;]" data-card-state="[&quot;open&quot;]" data-card-title="[&quot;[feature&quot;,&quot;request]&quot;,&quot;addition&quot;,&quot;of&quot;,&quot;@version&quot;,&quot;and&quot;,&quot;@since&quot;,&quot;checks&quot;,&quot;in&quot;,&quot;javadocmethod&quot;,&quot;module&quot;,&quot;723&quot;,&quot;#723&quot;]" data-card-type="[&quot;issue&quot;]" data-card-is="[&quot;open&quot;,&quot;issue&quot;]">
+
+  
+<span class="card-octicon position-absolute text-green">
+  <svg aria-label="Open Issue" class="octicon octicon-issue-opened open" height="16" role="img" version="1.1" viewBox="0 0 14 16" width="14"><path fill-rule="evenodd" d="M7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 0 1 1.3 8c0-3.14 2.56-5.7 5.7-5.7zM7 1C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7zm1 3H6v5h2V4zm0 6H6v2h2v-2z"></path></svg>
+</span>
+
+                                            <a href="https://github.com/checkstyle/checkstyle/issues/723" class="h5 d-block lh-condensed mr-4 mb-1">[Feature Request] addition of @version and @since checks in JavadocMethod module</a>
+
+
+
+                                            <small class="text-gray d-block ">
+                                                #723 opened by <a href="https://github.com/seangibbens" class="text-gray-dark">seangibbens</a>
+                                            </small>
+
+
+                                            <span class="labels d-block pb-1 ">
+      <span aria-label="View all GSoC2017" class="issue-card-label css-truncate css-truncate-target label mt-1 v-align-middle labelstyle-fbca04 linked-labelstyle-fbca04 tooltipped tooltipped-n" style="background-color: #fbca04; color: #332900;">GSoC2017</span>
+      <span aria-label="View all javadoc" class="issue-card-label css-truncate css-truncate-target label mt-1 v-align-middle labelstyle-f7c6c7 linked-labelstyle-f7c6c7 tooltipped tooltipped-n" style="background-color: #f7c6c7; color: #332829;">javadoc</span>
+  </span>
+
+
+                                        </div>
+
+                                        <div class="issue-card project-card pl-5 p-2 mb-2 border border-gray rounded-1 js-project-column-card js-socket-channel js-updatable-content bg-white" id="card-2848641" data-channel="projects:cards:2848641" data-card-id="2848641" data-content-type="Issue" data-content-id="72038781" data-card-assignee="[]" data-card-author="[&quot;kennknowles&quot;]" data-card-label="[&quot;gsoc2017&quot;,&quot;javadoc&quot;]" data-card-repo="[&quot;checkstyle/checkstyle&quot;]" data-card-state="[&quot;open&quot;]" data-card-title="[&quot;checkstyle&quot;,&quot;erroneously&quot;,&quot;detects&quot;,&quot;javadoc&quot;,&quot;html&quot;,&quot;tags&quot;,&quot;inside&quot;,&quot;{@code&quot;,&quot;...}&quot;,&quot;and&quot;,&quot;{@literal&quot;,&quot;...}&quot;,&quot;1023&quot;,&quot;#1023&quot;]" data-card-type="[&quot;issue&quot;]" data-card-is="[&quot;open&quot;,&quot;issue&quot;]">
+
+  
+<span class="card-octicon position-absolute text-green">
+  <svg aria-label="Open Issue" class="octicon octicon-issue-opened open" height="16" role="img" version="1.1" viewBox="0 0 14 16" width="14"><path fill-rule="evenodd" d="M7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 0 1 1.3 8c0-3.14 2.56-5.7 5.7-5.7zM7 1C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7zm1 3H6v5h2V4zm0 6H6v2h2v-2z"></path></svg>
+</span>
+
+                                            <a href="https://github.com/checkstyle/checkstyle/issues/1023" class="h5 d-block lh-condensed mr-4 mb-1">checkstyle erroneously detects Javadoc HTML tags inside {@code ...} and {@literal ...}</a>
+
+
+
+                                            <small class="text-gray d-block ">
+                                                #1023 opened by <a href="https://github.com/kennknowles" class="text-gray-dark">kennknowles</a>
+                                            </small>
+
+
+                                            <span class="labels d-block pb-1 ">
+      <span aria-label="View all GSoC2017" class="issue-card-label css-truncate css-truncate-target label mt-1 v-align-middle labelstyle-fbca04 linked-labelstyle-fbca04 tooltipped tooltipped-n" style="background-color: #fbca04; color: #332900;">GSoC2017</span>
+      <span aria-label="View all javadoc" class="issue-card-label css-truncate css-truncate-target label mt-1 v-align-middle labelstyle-f7c6c7 linked-labelstyle-f7c6c7 tooltipped tooltipped-n" style="background-color: #f7c6c7; color: #332829;">javadoc</span>
+  </span>
+
+
+                                        </div>
+
+                                        <div class="issue-card project-card pl-5 p-2 mb-2 border border-gray rounded-1 js-project-column-card js-socket-channel js-updatable-content bg-white" id="card-2848639" data-channel="projects:cards:2848639" data-card-id="2848639" data-content-type="Issue" data-content-id="78874727" data-card-assignee="[]" data-card-author="[&quot;dhendriks&quot;]" data-card-label="[&quot;gsoc2017&quot;,&quot;javadoc&quot;]" data-card-repo="[&quot;checkstyle/checkstyle&quot;]" data-card-state="[&quot;open&quot;]" data-card-title="[&quot;javadocstyle&quot;,&quot;does&quot;,&quot;not&quot;,&quot;properly&quot;,&quot;detect&quot;,&quot;incomplete/missing/unclosed&quot;,&quot;html&quot;,&quot;end&quot;,&quot;tags&quot;,&quot;in&quot;,&quot;javadoc&quot;,&quot;1112&quot;,&quot;#1112&quot;]" data-card-type="[&quot;issue&quot;]" data-card-is="[&quot;open&quot;,&quot;issue&quot;]">
+
+  
+<span class="card-octicon position-absolute text-green">
+  <svg aria-label="Open Issue" class="octicon octicon-issue-opened open" height="16" role="img" version="1.1" viewBox="0 0 14 16" width="14"><path fill-rule="evenodd" d="M7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 0 1 1.3 8c0-3.14 2.56-5.7 5.7-5.7zM7 1C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7zm1 3H6v5h2V4zm0 6H6v2h2v-2z"></path></svg>
+</span>
+
+                                            <a href="https://github.com/checkstyle/checkstyle/issues/1112" class="h5 d-block lh-condensed mr-4 mb-1">JavadocStyle does not properly detect incomplete/missing/unclosed HTML end tags in Javadoc</a>
+
+
+
+                                            <small class="text-gray d-block ">
+                                                #1112 opened by <a href="https://github.com/dhendriks" class="text-gray-dark">dhendriks</a>
+                                            </small>
+
+
+                                            <span class="labels d-block pb-1 ">
+      <span aria-label="View all GSoC2017" class="issue-card-label css-truncate css-truncate-target label mt-1 v-align-middle labelstyle-fbca04 linked-labelstyle-fbca04 tooltipped tooltipped-n" style="background-color: #fbca04; color: #332900;">GSoC2017</span>
+      <span aria-label="View all javadoc" class="issue-card-label css-truncate css-truncate-target label mt-1 v-align-middle labelstyle-f7c6c7 linked-labelstyle-f7c6c7 tooltipped tooltipped-n" style="background-color: #f7c6c7; color: #332829;">javadoc</span>
+  </span>
+
+
+                                        </div>
+
+                                        <div class="issue-card project-card pl-5 p-2 mb-2 border border-gray rounded-1 js-project-column-card js-socket-channel js-updatable-content bg-white" id="card-2848634" data-channel="projects:cards:2848634" data-card-id="2848634" data-content-type="Issue" data-content-id="125665570" data-card-assignee="[]" data-card-author="[&quot;rnveach&quot;]" data-card-label="[&quot;gsoc2017&quot;,&quot;javadoc&quot;,&quot;new feature&quot;]" data-card-repo="[&quot;checkstyle/checkstyle&quot;]" data-card-state="[&quot;open&quot;]" data-card-title="[&quot;feature&quot;,&quot;to&quot;,&quot;have&quot;,&quot;javadocmethod&quot;,&quot;validate&quot;,&quot;parameter&quot;,&quot;order&quot;,&quot;2810&quot;,&quot;#2810&quot;]" data-card-type="[&quot;issue&quot;]" data-card-is="[&quot;open&quot;,&quot;issue&quot;]">
+
+  
+<span class="card-octicon position-absolute text-green">
+  <svg aria-label="Open Issue" class="octicon octicon-issue-opened open" height="16" role="img" version="1.1" viewBox="0 0 14 16" width="14"><path fill-rule="evenodd" d="M7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 0 1 1.3 8c0-3.14 2.56-5.7 5.7-5.7zM7 1C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7zm1 3H6v5h2V4zm0 6H6v2h2v-2z"></path></svg>
+</span>
+
+                                            <a href="https://github.com/checkstyle/checkstyle/issues/2810" class="h5 d-block lh-condensed mr-4 mb-1">Feature to have JavadocMethod validate parameter order</a>
+
+
+
+                                            <small class="text-gray d-block ">
+                                                #2810 opened by <a href="https://github.com/rnveach" class="text-gray-dark">rnveach</a>
+                                            </small>
+
+
+                                            <span class="labels d-block pb-1 ">
+      <span aria-label="View all GSoC2017" class="issue-card-label css-truncate css-truncate-target label mt-1 v-align-middle labelstyle-fbca04 linked-labelstyle-fbca04 tooltipped tooltipped-n" style="background-color: #fbca04; color: #332900;">GSoC2017</span>
+      <span aria-label="View all javadoc" class="issue-card-label css-truncate css-truncate-target label mt-1 v-align-middle labelstyle-f7c6c7 linked-labelstyle-f7c6c7 tooltipped tooltipped-n" style="background-color: #f7c6c7; color: #332829;">javadoc</span>
+      <span aria-label="View all new feature" class="issue-card-label css-truncate css-truncate-target label mt-1 v-align-middle labelstyle-bfe5bf linked-labelstyle-bfe5bf tooltipped tooltipped-n" style="background-color: #bfe5bf; color: #2a332a;">new feature</span>
+  </span>
+
+
+                                        </div>
+
+                                        <div class="issue-card project-card pl-5 p-2 mb-2 border border-gray rounded-1 js-project-column-card js-socket-channel js-updatable-content bg-white" id="card-2848616" data-channel="projects:cards:2848616" data-card-id="2848616" data-content-type="Issue" data-content-id="216351793" data-card-assignee="[]" data-card-author="[&quot;ljacqu&quot;]" data-card-label="[&quot;gsoc2017&quot;,&quot;javadoc&quot;]" data-card-repo="[&quot;checkstyle/checkstyle&quot;]" data-card-state="[&quot;open&quot;]" data-card-title="[&quot;javadocvariable:&quot;,&quot;add&quot;,&quot;\&quot;allowedannotations\&quot;&quot;,&quot;property&quot;,&quot;4089&quot;,&quot;#4089&quot;]" data-card-type="[&quot;issue&quot;]" data-card-is="[&quot;open&quot;,&quot;issue&quot;]">
+
+  
+<span class="card-octicon position-absolute text-green">
+  <svg aria-label="Open Issue" class="octicon octicon-issue-opened open" height="16" role="img" version="1.1" viewBox="0 0 14 16" width="14"><path fill-rule="evenodd" d="M7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 0 1 1.3 8c0-3.14 2.56-5.7 5.7-5.7zM7 1C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7zm1 3H6v5h2V4zm0 6H6v2h2v-2z"></path></svg>
+</span>
+
+                                            <a href="https://github.com/checkstyle/checkstyle/issues/4089" class="h5 d-block lh-condensed mr-4 mb-1">JavadocVariable: add "allowedAnnotations" property</a>
+
+
+
+                                            <small class="text-gray d-block ">
+                                                #4089 opened by <a href="https://github.com/ljacqu" class="text-gray-dark">ljacqu</a>
+                                            </small>
+
+
+                                            <span class="labels d-block pb-1 ">
+      <span aria-label="View all GSoC2017" class="issue-card-label css-truncate css-truncate-target label mt-1 v-align-middle labelstyle-fbca04 linked-labelstyle-fbca04 tooltipped tooltipped-n" style="background-color: #fbca04; color: #332900;">GSoC2017</span>
+      <span aria-label="View all javadoc" class="issue-card-label css-truncate css-truncate-target label mt-1 v-align-middle labelstyle-f7c6c7 linked-labelstyle-f7c6c7 tooltipped tooltipped-n" style="background-color: #f7c6c7; color: #332829;">javadoc</span>
+  </span>
+
+
+                                        </div>
+
+                                        <div class="issue-card project-card pl-5 p-2 mb-2 border border-gray rounded-1 js-project-column-card js-socket-channel js-updatable-content bg-white" id="card-2848626" data-channel="projects:cards:2848626" data-card-id="2848626" data-content-type="Issue" data-content-id="134427639" data-card-assignee="[]" data-card-author="[&quot;liutikas&quot;]" data-card-label="[&quot;gsoc2017&quot;,&quot;javadoc&quot;]" data-card-repo="[&quot;checkstyle/checkstyle&quot;]" data-card-state="[&quot;open&quot;]" data-card-title="[&quot;add&quot;,&quot;support&quot;,&quot;for&quot;,&quot;@hide&quot;,&quot;annotation&quot;,&quot;in&quot;,&quot;javadoc&quot;,&quot;2932&quot;,&quot;#2932&quot;]" data-card-type="[&quot;issue&quot;]" data-card-is="[&quot;open&quot;,&quot;issue&quot;]">
+
+  
+<span class="card-octicon position-absolute text-green">
+  <svg aria-label="Open Issue" class="octicon octicon-issue-opened open" height="16" role="img" version="1.1" viewBox="0 0 14 16" width="14"><path fill-rule="evenodd" d="M7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 0 1 1.3 8c0-3.14 2.56-5.7 5.7-5.7zM7 1C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7zm1 3H6v5h2V4zm0 6H6v2h2v-2z"></path></svg>
+</span>
+
+                                            <a href="https://github.com/checkstyle/checkstyle/issues/2932" class="h5 d-block lh-condensed mr-4 mb-1">Add support for @hide annotation in JavaDoc</a>
+
+
+
+                                            <small class="text-gray d-block ">
+                                                #2932 opened by <a href="https://github.com/liutikas" class="text-gray-dark">liutikas</a>
+                                            </small>
+
+
+                                            <span class="labels d-block pb-1 ">
+      <span aria-label="View all GSoC2017" class="issue-card-label css-truncate css-truncate-target label mt-1 v-align-middle labelstyle-fbca04 linked-labelstyle-fbca04 tooltipped tooltipped-n" style="background-color: #fbca04; color: #332900;">GSoC2017</span>
+      <span aria-label="View all javadoc" class="issue-card-label css-truncate css-truncate-target label mt-1 v-align-middle labelstyle-f7c6c7 linked-labelstyle-f7c6c7 tooltipped tooltipped-n" style="background-color: #f7c6c7; color: #332829;">javadoc</span>
+  </span>
+
+
+                                        </div>
+
+                                        <div class="issue-card project-card pl-5 p-2 mb-2 border border-gray rounded-1 js-project-column-card js-socket-channel js-updatable-content bg-white" id="card-2848625" data-channel="projects:cards:2848625" data-card-id="2848625" data-content-type="Issue" data-content-id="148305993" data-card-assignee="[]" data-card-author="[&quot;paf001&quot;]" data-card-label="[&quot;gsoc2017&quot;,&quot;javadoc&quot;]" data-card-repo="[&quot;checkstyle/checkstyle&quot;]" data-card-state="[&quot;open&quot;]" data-card-title="[&quot;unusedimports's&quot;,&quot;processjavadoc&quot;,&quot;doesn't&quot;,&quot;work&quot;,&quot;for&quot;,&quot;public&quot;,&quot;fields&quot;,&quot;and&quot;,&quot;nested&quot;,&quot;classes&quot;,&quot;3098&quot;,&quot;#3098&quot;]" data-card-type="[&quot;issue&quot;]" data-card-is="[&quot;open&quot;,&quot;issue&quot;]">
+
+  
+<span class="card-octicon position-absolute text-green">
+  <svg aria-label="Open Issue" class="octicon octicon-issue-opened open" height="16" role="img" version="1.1" viewBox="0 0 14 16" width="14"><path fill-rule="evenodd" d="M7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 0 1 1.3 8c0-3.14 2.56-5.7 5.7-5.7zM7 1C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7zm1 3H6v5h2V4zm0 6H6v2h2v-2z"></path></svg>
+</span>
+
+                                            <a href="https://github.com/checkstyle/checkstyle/issues/3098" class="h5 d-block lh-condensed mr-4 mb-1">UnusedImports's processJavadoc doesn't work for public fields and nested classes</a>
+
+
+
+                                            <small class="text-gray d-block ">
+                                                #3098 opened by <a href="https://github.com/paf001" class="text-gray-dark">paf001</a>
+                                            </small>
+
+
+                                            <span class="labels d-block pb-1 ">
+      <span aria-label="View all GSoC2017" class="issue-card-label css-truncate css-truncate-target label mt-1 v-align-middle labelstyle-fbca04 linked-labelstyle-fbca04 tooltipped tooltipped-n" style="background-color: #fbca04; color: #332900;">GSoC2017</span>
+      <span aria-label="View all javadoc" class="issue-card-label css-truncate css-truncate-target label mt-1 v-align-middle labelstyle-f7c6c7 linked-labelstyle-f7c6c7 tooltipped tooltipped-n" style="background-color: #f7c6c7; color: #332829;">javadoc</span>
+  </span>
+
+
+                                        </div>
+
+                                        <div class="issue-card project-card pl-5 p-2 mb-2 border border-gray rounded-1 js-project-column-card js-socket-channel js-updatable-content bg-white" id="card-2848619" data-channel="projects:cards:2848619" data-card-id="2848619" data-content-type="Issue" data-content-id="179273710" data-card-assignee="[]" data-card-author="[&quot;rnveach&quot;]" data-card-label="[&quot;gsoc2017&quot;,&quot;javadoc&quot;]" data-card-repo="[&quot;checkstyle/checkstyle&quot;]" data-card-state="[&quot;open&quot;]" data-card-title="[&quot;javadocstyle:&quot;,&quot;check&quot;,&quot;if&quot;,&quot;javadoc&quot;,&quot;starts&quot;,&quot;with&quot;,&quot;an&quot;,&quot;uppercase&quot;,&quot;letter&quot;,&quot;3468&quot;,&quot;#3468&quot;]" data-card-type="[&quot;issue&quot;]" data-card-is="[&quot;open&quot;,&quot;issue&quot;]">
+
+  
+<span class="card-octicon position-absolute text-green">
+  <svg aria-label="Open Issue" class="octicon octicon-issue-opened open" height="16" role="img" version="1.1" viewBox="0 0 14 16" width="14"><path fill-rule="evenodd" d="M7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 0 1 1.3 8c0-3.14 2.56-5.7 5.7-5.7zM7 1C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7zm1 3H6v5h2V4zm0 6H6v2h2v-2z"></path></svg>
+</span>
+
+                                            <a href="https://github.com/checkstyle/checkstyle/issues/3468" class="h5 d-block lh-condensed mr-4 mb-1">JavadocStyle: check if javadoc starts with an uppercase letter</a>
+
+
+
+                                            <small class="text-gray d-block ">
+                                                #3468 opened by <a href="https://github.com/rnveach" class="text-gray-dark">rnveach</a>
+                                            </small>
+
+
+                                            <span class="labels d-block pb-1 ">
+      <span aria-label="View all GSoC2017" class="issue-card-label css-truncate css-truncate-target label mt-1 v-align-middle labelstyle-fbca04 linked-labelstyle-fbca04 tooltipped tooltipped-n" style="background-color: #fbca04; color: #332900;">GSoC2017</span>
+      <span aria-label="View all javadoc" class="issue-card-label css-truncate css-truncate-target label mt-1 v-align-middle labelstyle-f7c6c7 linked-labelstyle-f7c6c7 tooltipped tooltipped-n" style="background-color: #f7c6c7; color: #332829;">javadoc</span>
+  </span>
+
+
+                                        </div>
+
+                                        <div class="issue-card project-card pl-5 p-2 mb-2 border border-gray rounded-1 js-project-column-card js-socket-channel js-updatable-content bg-white" id="card-2848618" data-channel="projects:cards:2848618" data-card-id="2848618" data-content-type="Issue" data-content-id="179498922" data-card-assignee="[]" data-card-author="[&quot;rnveach&quot;]" data-card-label="[&quot;gsoc2017&quot;,&quot;javadoc&quot;]" data-card-repo="[&quot;checkstyle/checkstyle&quot;]" data-card-state="[&quot;open&quot;]" data-card-title="[&quot;javadocmethod:&quot;,&quot;check&quot;,&quot;for&quot;,&quot;duplicate&quot;,&quot;throws&quot;,&quot;annotations&quot;,&quot;3469&quot;,&quot;#3469&quot;]" data-card-type="[&quot;issue&quot;]" data-card-is="[&quot;open&quot;,&quot;issue&quot;]">
+
+  
+<span class="card-octicon position-absolute text-green">
+  <svg aria-label="Open Issue" class="octicon octicon-issue-opened open" height="16" role="img" version="1.1" viewBox="0 0 14 16" width="14"><path fill-rule="evenodd" d="M7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 0 1 1.3 8c0-3.14 2.56-5.7 5.7-5.7zM7 1C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7zm1 3H6v5h2V4zm0 6H6v2h2v-2z"></path></svg>
+</span>
+
+                                            <a href="https://github.com/checkstyle/checkstyle/issues/3469" class="h5 d-block lh-condensed mr-4 mb-1">JavadocMethod: check for duplicate throws annotations</a>
+
+
+
+                                            <small class="text-gray d-block ">
+                                                #3469 opened by <a href="https://github.com/rnveach" class="text-gray-dark">rnveach</a>
+                                            </small>
+
+
+                                            <span class="labels d-block pb-1 ">
+      <span aria-label="View all GSoC2017" class="issue-card-label css-truncate css-truncate-target label mt-1 v-align-middle labelstyle-fbca04 linked-labelstyle-fbca04 tooltipped tooltipped-n" style="background-color: #fbca04; color: #332900;">GSoC2017</span>
+      <span aria-label="View all javadoc" class="issue-card-label css-truncate css-truncate-target label mt-1 v-align-middle labelstyle-f7c6c7 linked-labelstyle-f7c6c7 tooltipped tooltipped-n" style="background-color: #f7c6c7; color: #332829;">javadoc</span>
+  </span>
+
+
+                                        </div>
+
+                                        <div class="issue-card project-card pl-5 p-2 mb-2 border border-gray rounded-1 js-project-column-card js-socket-channel js-updatable-content bg-white" id="card-3749085" data-channel="projects:cards:3749085" data-card-id="3749085" data-content-type="Issue" data-content-id="242282591" data-card-assignee="[]" data-card-author="[&quot;pbludov&quot;]" data-card-label="[&quot;gsoc2017&quot;,&quot;javadoc&quot;]" data-card-repo="[&quot;checkstyle/checkstyle&quot;]" data-card-state="[&quot;open&quot;]" data-card-title="[&quot;no&quot;,&quot;error&quot;,&quot;for&quot;,&quot;a&quot;,&quot;misplaced&quot;,&quot;javadoc&quot;,&quot;tag&quot;,&quot;4701&quot;,&quot;#4701&quot;]" data-card-type="[&quot;issue&quot;]" data-card-is="[&quot;open&quot;,&quot;issue&quot;]">
+
+  
+<span class="card-octicon position-absolute text-green">
+  <svg aria-label="Open Issue" class="octicon octicon-issue-opened open" height="16" role="img" version="1.1" viewBox="0 0 14 16" width="14"><path fill-rule="evenodd" d="M7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 0 1 1.3 8c0-3.14 2.56-5.7 5.7-5.7zM7 1C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7zm1 3H6v5h2V4zm0 6H6v2h2v-2z"></path></svg>
+</span>
+
+                                            <a href="https://github.com/checkstyle/checkstyle/issues/4701" class="h5 d-block lh-condensed mr-4 mb-1">No error for a misplaced javadoc tag</a>
+
+
+
+                                            <small class="text-gray d-block ">
+                                                #4701 opened by <a href="https://github.com/pbludov" class="text-gray-dark">pbludov</a>
+                                            </small>
+
+
+                                            <span class="labels d-block pb-1 ">
+      <span aria-label="View all GSoC2017" class="issue-card-label css-truncate css-truncate-target label mt-1 v-align-middle labelstyle-fbca04 linked-labelstyle-fbca04 tooltipped tooltipped-n" style="background-color: #fbca04; color: #332900;">GSoC2017</span>
+      <span aria-label="View all javadoc" class="issue-card-label css-truncate css-truncate-target label mt-1 v-align-middle labelstyle-f7c6c7 linked-labelstyle-f7c6c7 tooltipped tooltipped-n" style="background-color: #f7c6c7; color: #332829;">javadoc</span>
+  </span>
+
+
+                                        </div>
+
+
+
+                                    </div>
+
+                                </div>
+
+                                <div class="project-column position-relative d-flex flex-column overflow-hidden mr-3 height-full v-align-top bg-gray-light border rounded-1 js-project-column js-socket-channel" id="project-column-1005953" data-url="/checkstyle/checkstyle/projects/4/columns/1005953" data-id="1005953">
+
+                                    <div class="bg-gray-light border-bottom py-2 px-3 border-bottom clearfix js-details-container Details">
+                                        <h4 class="m-0 f5 v-align-middle d-inline">
+                                            <span class="js-project-column-name">Backlog</span>
+                                            <span class="Counter ml-1 position-relative js-column-card-count" aria-label="Contains 10 items">10</span>
+                                        </h4>
+                                    </div>
+
+                                    <p class="js-filtered-column-card-count mt-2 mb-0 f6 text-center text-gray-light d-none"></p>
+
+                                    <div id="column-cards-1005953" class="position-relative overflow-auto p-2 js-project-column-cards  height-full" data-id="1005953">
+                                        <div class="issue-card project-card pl-5 p-2 mb-2 border border-gray rounded-1 js-project-column-card js-socket-channel js-updatable-content bg-white" id="card-2915310" data-channel="projects:cards:2915310" data-card-id="2915310" data-content-type="Issue" data-content-id="190589959" data-card-assignee="[]" data-card-author="[&quot;rnveach&quot;]" data-card-label="[&quot;approved&quot;,&quot;bug&quot;,&quot;gsoc2017&quot;,&quot;javadoc&quot;]" data-card-repo="[&quot;checkstyle/checkstyle&quot;]" data-card-state="[&quot;open&quot;]" data-card-title="[&quot;javadocparagraph:&quot;,&quot;unexpected&quot;,&quot;violation&quot;,&quot;due&quot;,&quot;to&quot;,&quot;inconsistent&quot;,&quot;ast&quot;,&quot;tree&quot;,&quot;with&quot;,&quot;and&quot;,&quot;without&quot;,&quot;singleton_element&quot;,&quot;3570&quot;,&quot;#3570&quot;]" data-card-type="[&quot;issue&quot;]" data-card-is="[&quot;open&quot;,&quot;issue&quot;]">
+
+  
+<span class="card-octicon position-absolute text-green">
+  <svg aria-label="Open Issue" class="octicon octicon-issue-opened open" height="16" role="img" version="1.1" viewBox="0 0 14 16" width="14"><path fill-rule="evenodd" d="M7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 0 1 1.3 8c0-3.14 2.56-5.7 5.7-5.7zM7 1C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7zm1 3H6v5h2V4zm0 6H6v2h2v-2z"></path></svg>
+</span>
+
+                                            <a href="https://github.com/checkstyle/checkstyle/issues/3570" class="h5 d-block lh-condensed mr-4 mb-1">JavadocParagraph: unexpected violation due to inconsistent AST tree with and without SINGLETON_ELEMENT</a>
+
+
+
+                                            <small class="text-gray d-block ">
+                                                #3570 opened by <a href="https://github.com/rnveach" class="text-gray-dark">rnveach</a>
+                                            </small>
+
+
+                                            <span class="labels d-block pb-1 ">
+      <span aria-label="View all approved" class="issue-card-label css-truncate css-truncate-target label mt-1 v-align-middle labelstyle-009800 linked-labelstyle-009800 tooltipped tooltipped-n" style="background-color: #009800; color: #fff;">approved</span>
+      <span aria-label="View all bug" class="issue-card-label css-truncate css-truncate-target label mt-1 v-align-middle labelstyle-fc2929 linked-labelstyle-fc2929 tooltipped tooltipped-n" style="background-color: #fc2929; color: #fff;">bug</span>
+      <span aria-label="View all GSoC2017" class="issue-card-label css-truncate css-truncate-target label mt-1 v-align-middle labelstyle-fbca04 linked-labelstyle-fbca04 tooltipped tooltipped-n" style="background-color: #fbca04; color: #332900;">GSoC2017</span>
+      <span aria-label="View all javadoc" class="issue-card-label css-truncate css-truncate-target label mt-1 v-align-middle labelstyle-f7c6c7 linked-labelstyle-f7c6c7 tooltipped tooltipped-n" style="background-color: #f7c6c7; color: #332829;">javadoc</span>
+  </span>
+
+
+                                        </div>
+
+                                        <div class="issue-card project-card pl-5 p-2 mb-2 border border-gray rounded-1 js-project-column-card js-socket-channel js-updatable-content bg-white" id="card-2848659" data-channel="projects:cards:2848659" data-card-id="2848659" data-content-type="Issue" data-content-id="21870860" data-card-assignee="[]" data-card-author="[&quot;dmzimmerman&quot;]" data-card-label="[&quot;approved&quot;,&quot;gsoc2017&quot;,&quot;javadoc&quot;]" data-card-repo="[&quot;checkstyle/checkstyle&quot;]" data-card-state="[&quot;open&quot;]" data-card-title="[&quot;javadocmethod:&quot;,&quot;javadoc&quot;,&quot;not&quot;,&quot;detected&quot;,&quot;above&quot;,&quot;multiline&quot;,&quot;comments&quot;,&quot;43&quot;,&quot;#43&quot;]" data-card-type="[&quot;issue&quot;]" data-card-is="[&quot;open&quot;,&quot;issue&quot;]">
+
+  
+<span class="card-octicon position-absolute text-green">
+  <svg aria-label="Open Issue" class="octicon octicon-issue-opened open" height="16" role="img" version="1.1" viewBox="0 0 14 16" width="14"><path fill-rule="evenodd" d="M7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 0 1 1.3 8c0-3.14 2.56-5.7 5.7-5.7zM7 1C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7zm1 3H6v5h2V4zm0 6H6v2h2v-2z"></path></svg>
+</span>
+
+                                            <a href="https://github.com/checkstyle/checkstyle/issues/43" class="h5 d-block lh-condensed mr-4 mb-1">JavadocMethod: Javadoc Not Detected Above Multiline Comments</a>
+
+
+
+                                            <small class="text-gray d-block ">
+                                                #43 opened by <a href="https://github.com/dmzimmerman" class="text-gray-dark">dmzimmerman</a>
+                                            </small>
+
+
+                                            <span class="labels d-block pb-1 ">
+      <span aria-label="View all approved" class="issue-card-label css-truncate css-truncate-target label mt-1 v-align-middle labelstyle-009800 linked-labelstyle-009800 tooltipped tooltipped-n" style="background-color: #009800; color: #fff;">approved</span>
+      <span aria-label="View all GSoC2017" class="issue-card-label css-truncate css-truncate-target label mt-1 v-align-middle labelstyle-fbca04 linked-labelstyle-fbca04 tooltipped tooltipped-n" style="background-color: #fbca04; color: #332900;">GSoC2017</span>
+      <span aria-label="View all javadoc" class="issue-card-label css-truncate css-truncate-target label mt-1 v-align-middle labelstyle-f7c6c7 linked-labelstyle-f7c6c7 tooltipped tooltipped-n" style="background-color: #f7c6c7; color: #332829;">javadoc</span>
+  </span>
+
+
+                                        </div>
+
+                                        <div class="issue-card project-card pl-5 p-2 mb-2 border border-gray rounded-1 js-project-column-card js-socket-channel js-updatable-content bg-white" id="card-2848656" data-channel="projects:cards:2848656" data-card-id="2848656" data-content-type="Issue" data-content-id="26948689" data-card-assignee="[]" data-card-author="[&quot;isopov&quot;]" data-card-label="[&quot;approved&quot;,&quot;enhancement&quot;,&quot;gsoc2017&quot;,&quot;javadoc&quot;]" data-card-repo="[&quot;checkstyle/checkstyle&quot;]" data-card-state="[&quot;open&quot;]" data-card-title="[&quot;allow&quot;,&quot;requirement&quot;,&quot;of&quot;,&quot;javadocs&quot;,&quot;only&quot;,&quot;for&quot;,&quot;interfaces/abstract&quot;,&quot;classes&quot;,&quot;97&quot;,&quot;#97&quot;]" data-card-type="[&quot;issue&quot;]" data-card-is="[&quot;open&quot;,&quot;issue&quot;]">
+
+  
+<span class="card-octicon position-absolute text-green">
+  <svg aria-label="Open Issue" class="octicon octicon-issue-opened open" height="16" role="img" version="1.1" viewBox="0 0 14 16" width="14"><path fill-rule="evenodd" d="M7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 0 1 1.3 8c0-3.14 2.56-5.7 5.7-5.7zM7 1C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7zm1 3H6v5h2V4zm0 6H6v2h2v-2z"></path></svg>
+</span>
+
+                                            <a href="https://github.com/checkstyle/checkstyle/issues/97" class="h5 d-block lh-condensed mr-4 mb-1">Allow requirement of javadocs only for interfaces/abstract classes</a>
+
+
+
+                                            <small class="text-gray d-block ">
+                                                #97 opened by <a href="https://github.com/isopov" class="text-gray-dark">isopov</a>
+                                            </small>
+
+
+                                            <span class="labels d-block pb-1 ">
+      <span aria-label="View all approved" class="issue-card-label css-truncate css-truncate-target label mt-1 v-align-middle labelstyle-009800 linked-labelstyle-009800 tooltipped tooltipped-n" style="background-color: #009800; color: #fff;">approved</span>
+      <span aria-label="View all enhancement" class="issue-card-label css-truncate css-truncate-target label mt-1 v-align-middle labelstyle-84b6eb linked-labelstyle-84b6eb tooltipped tooltipped-n" style="background-color: #84b6eb; color: #1c2733;">enhancement</span>
+      <span aria-label="View all GSoC2017" class="issue-card-label css-truncate css-truncate-target label mt-1 v-align-middle labelstyle-fbca04 linked-labelstyle-fbca04 tooltipped tooltipped-n" style="background-color: #fbca04; color: #332900;">GSoC2017</span>
+      <span aria-label="View all javadoc" class="issue-card-label css-truncate css-truncate-target label mt-1 v-align-middle labelstyle-f7c6c7 linked-labelstyle-f7c6c7 tooltipped tooltipped-n" style="background-color: #f7c6c7; color: #332829;">javadoc</span>
+  </span>
+
+
+                                        </div>
+
+                                        <div class="issue-card project-card pl-5 p-2 mb-2 border border-gray rounded-1 js-project-column-card js-socket-channel js-updatable-content bg-white" id="card-2848648" data-channel="projects:cards:2848648" data-card-id="2848648" data-content-type="Issue" data-content-id="64858774" data-card-assignee="[]" data-card-author="[&quot;damianszczepanik&quot;]" data-card-label="[&quot;approved&quot;,&quot;gsoc2017&quot;,&quot;javadoc&quot;]" data-card-repo="[&quot;checkstyle/checkstyle&quot;]" data-card-state="[&quot;open&quot;]" data-card-title="[&quot;check&quot;,&quot;for&quot;,&quot;imports&quot;,&quot;is&quot;,&quot;not&quot;,&quot;validates&quot;,&quot;against&quot;,&quot;javadoc&quot;,&quot;as&quot;,&quot;good&quot;,&quot;as&quot;,&quot;eclipse&quot;,&quot;does&quot;,&quot;859&quot;,&quot;#859&quot;]" data-card-type="[&quot;issue&quot;]" data-card-is="[&quot;open&quot;,&quot;issue&quot;]">
+
+  
+<span class="card-octicon position-absolute text-green">
+  <svg aria-label="Open Issue" class="octicon octicon-issue-opened open" height="16" role="img" version="1.1" viewBox="0 0 14 16" width="14"><path fill-rule="evenodd" d="M7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 0 1 1.3 8c0-3.14 2.56-5.7 5.7-5.7zM7 1C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7zm1 3H6v5h2V4zm0 6H6v2h2v-2z"></path></svg>
+</span>
+
+                                            <a href="https://github.com/checkstyle/checkstyle/issues/859" class="h5 d-block lh-condensed mr-4 mb-1">Check for imports is not validates against javadoc as good as Eclipse does</a>
+
+
+
+                                            <small class="text-gray d-block ">
+                                                #859 opened by <a href="https://github.com/damianszczepanik" class="text-gray-dark">damianszczepanik</a>
+                                            </small>
+
+
+                                            <span class="labels d-block pb-1 ">
+      <span aria-label="View all approved" class="issue-card-label css-truncate css-truncate-target label mt-1 v-align-middle labelstyle-009800 linked-labelstyle-009800 tooltipped tooltipped-n" style="background-color: #009800; color: #fff;">approved</span>
+      <span aria-label="View all GSoC2017" class="issue-card-label css-truncate css-truncate-target label mt-1 v-align-middle labelstyle-fbca04 linked-labelstyle-fbca04 tooltipped tooltipped-n" style="background-color: #fbca04; color: #332900;">GSoC2017</span>
+      <span aria-label="View all javadoc" class="issue-card-label css-truncate css-truncate-target label mt-1 v-align-middle labelstyle-f7c6c7 linked-labelstyle-f7c6c7 tooltipped tooltipped-n" style="background-color: #f7c6c7; color: #332829;">javadoc</span>
+  </span>
+
+
+                                        </div>
+
+                                        <div class="issue-card project-card pl-5 p-2 mb-2 border border-gray rounded-1 js-project-column-card js-socket-channel js-updatable-content bg-white" id="card-2848631" data-channel="projects:cards:2848631" data-card-id="2848631" data-content-type="Issue" data-content-id="125672592" data-card-assignee="[]" data-card-author="[&quot;rnveach&quot;]" data-card-label="[&quot;approved&quot;,&quot;gsoc2017&quot;,&quot;javadoc&quot;]" data-card-repo="[&quot;checkstyle/checkstyle&quot;]" data-card-state="[&quot;open&quot;]" data-card-title="[&quot;javadocs&quot;,&quot;don't&quot;,&quot;report&quot;,&quot;invalid&quot;,&quot;at&quot;,&quot;clauses&quot;,&quot;for&quot;,&quot;specific&quot;,&quot;types&quot;,&quot;2812&quot;,&quot;#2812&quot;]" data-card-type="[&quot;issue&quot;]" data-card-is="[&quot;open&quot;,&quot;issue&quot;]">
+
+  
+<span class="card-octicon position-absolute text-green">
+  <svg aria-label="Open Issue" class="octicon octicon-issue-opened open" height="16" role="img" version="1.1" viewBox="0 0 14 16" width="14"><path fill-rule="evenodd" d="M7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 0 1 1.3 8c0-3.14 2.56-5.7 5.7-5.7zM7 1C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7zm1 3H6v5h2V4zm0 6H6v2h2v-2z"></path></svg>
+</span>
+
+                                            <a href="https://github.com/checkstyle/checkstyle/issues/2812" class="h5 d-block lh-condensed mr-4 mb-1">Javadocs don't report invalid at clauses for specific types</a>
+
+
+
+                                            <small class="text-gray d-block ">
+                                                #2812 opened by <a href="https://github.com/rnveach" class="text-gray-dark">rnveach</a>
+                                            </small>
+
+
+                                            <span class="labels d-block pb-1 ">
+      <span aria-label="View all approved" class="issue-card-label css-truncate css-truncate-target label mt-1 v-align-middle labelstyle-009800 linked-labelstyle-009800 tooltipped tooltipped-n" style="background-color: #009800; color: #fff;">approved</span>
+      <span aria-label="View all GSoC2017" class="issue-card-label css-truncate css-truncate-target label mt-1 v-align-middle labelstyle-fbca04 linked-labelstyle-fbca04 tooltipped tooltipped-n" style="background-color: #fbca04; color: #332900;">GSoC2017</span>
+      <span aria-label="View all javadoc" class="issue-card-label css-truncate css-truncate-target label mt-1 v-align-middle labelstyle-f7c6c7 linked-labelstyle-f7c6c7 tooltipped tooltipped-n" style="background-color: #f7c6c7; color: #332829;">javadoc</span>
+  </span>
+
+
+                                        </div>
+
+                                        <div class="issue-card project-card pl-5 p-2 mb-2 border border-gray rounded-1 js-project-column-card js-socket-channel js-updatable-content bg-white" id="card-2848630" data-channel="projects:cards:2848630" data-card-id="2848630" data-content-type="Issue" data-content-id="125702063" data-card-assignee="[]" data-card-author="[&quot;rnveach&quot;]" data-card-label="[&quot;approved&quot;,&quot;easy&quot;,&quot;gsoc2017&quot;,&quot;javadoc&quot;]" data-card-repo="[&quot;checkstyle/checkstyle&quot;]" data-card-state="[&quot;open&quot;]" data-card-title="[&quot;javadoctagcontinuationindentation&quot;,&quot;doesn't&quot;,&quot;report&quot;,&quot;some&quot;,&quot;lines&quot;,&quot;2813&quot;,&quot;#2813&quot;]" data-card-type="[&quot;issue&quot;]" data-card-is="[&quot;open&quot;,&quot;issue&quot;]">
+
+  
+<span class="card-octicon position-absolute text-green">
+  <svg aria-label="Open Issue" class="octicon octicon-issue-opened open" height="16" role="img" version="1.1" viewBox="0 0 14 16" width="14"><path fill-rule="evenodd" d="M7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 0 1 1.3 8c0-3.14 2.56-5.7 5.7-5.7zM7 1C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7zm1 3H6v5h2V4zm0 6H6v2h2v-2z"></path></svg>
+</span>
+
+                                            <a href="https://github.com/checkstyle/checkstyle/issues/2813" class="h5 d-block lh-condensed mr-4 mb-1">JavadocTagContinuationIndentation doesn't report some lines</a>
+
+
+
+                                            <small class="text-gray d-block ">
+                                                #2813 opened by <a href="https://github.com/rnveach" class="text-gray-dark">rnveach</a>
+                                            </small>
+
+
+                                            <span class="labels d-block pb-1 ">
+      <span aria-label="View all approved" class="issue-card-label css-truncate css-truncate-target label mt-1 v-align-middle labelstyle-009800 linked-labelstyle-009800 tooltipped tooltipped-n" style="background-color: #009800; color: #fff;">approved</span>
+      <span aria-label="View all easy" class="issue-card-label css-truncate css-truncate-target label mt-1 v-align-middle labelstyle-c2e0c6 linked-labelstyle-c2e0c6 tooltipped tooltipped-n" style="background-color: #c2e0c6; color: #2c332d;">easy</span>
+      <span aria-label="View all GSoC2017" class="issue-card-label css-truncate css-truncate-target label mt-1 v-align-middle labelstyle-fbca04 linked-labelstyle-fbca04 tooltipped tooltipped-n" style="background-color: #fbca04; color: #332900;">GSoC2017</span>
+      <span aria-label="View all javadoc" class="issue-card-label css-truncate css-truncate-target label mt-1 v-align-middle labelstyle-f7c6c7 linked-labelstyle-f7c6c7 tooltipped tooltipped-n" style="background-color: #f7c6c7; color: #332829;">javadoc</span>
+  </span>
+
+
+                                        </div>
+
+                                        <div class="issue-card project-card pl-5 p-2 mb-2 border border-gray rounded-1 js-project-column-card js-socket-channel js-updatable-content bg-white" id="card-3350281" data-channel="projects:cards:3350281" data-card-id="3350281" data-content-type="Issue" data-content-id="164139680" data-card-assignee="[]" data-card-author="[&quot;thombergs&quot;]" data-card-label="[&quot;approved&quot;,&quot;gsoc2017&quot;,&quot;javadoc&quot;]" data-card-repo="[&quot;checkstyle/checkstyle&quot;]" data-card-state="[&quot;open&quot;]" data-card-title="[&quot;checkstyle&quot;,&quot;produces&quot;,&quot;different&quot;,&quot;results&quot;,&quot;in&quot;,&quot;different&quot;,&quot;runs&quot;,&quot;on&quot;,&quot;the&quot;,&quot;same&quot;,&quot;file&quot;,&quot;3340&quot;,&quot;#3340&quot;]" data-card-type="[&quot;issue&quot;]" data-card-is="[&quot;open&quot;,&quot;issue&quot;]">
+
+  
+<span class="card-octicon position-absolute text-green">
+  <svg aria-label="Open Issue" class="octicon octicon-issue-opened open" height="16" role="img" version="1.1" viewBox="0 0 14 16" width="14"><path fill-rule="evenodd" d="M7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 0 1 1.3 8c0-3.14 2.56-5.7 5.7-5.7zM7 1C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7zm1 3H6v5h2V4zm0 6H6v2h2v-2z"></path></svg>
+</span>
+
+                                            <a href="https://github.com/checkstyle/checkstyle/issues/3340" class="h5 d-block lh-condensed mr-4 mb-1">Checkstyle produces different results in different runs on the same file</a>
+
+
+
+                                            <small class="text-gray d-block ">
+                                                #3340 opened by <a href="https://github.com/thombergs" class="text-gray-dark">thombergs</a>
+                                            </small>
+
+
+                                            <span class="labels d-block pb-1 ">
+      <span aria-label="View all approved" class="issue-card-label css-truncate css-truncate-target label mt-1 v-align-middle labelstyle-009800 linked-labelstyle-009800 tooltipped tooltipped-n" style="background-color: #009800; color: #fff;">approved</span>
+      <span aria-label="View all GSoC2017" class="issue-card-label css-truncate css-truncate-target label mt-1 v-align-middle labelstyle-fbca04 linked-labelstyle-fbca04 tooltipped tooltipped-n" style="background-color: #fbca04; color: #332900;">GSoC2017</span>
+      <span aria-label="View all javadoc" class="issue-card-label css-truncate css-truncate-target label mt-1 v-align-middle labelstyle-f7c6c7 linked-labelstyle-f7c6c7 tooltipped tooltipped-n" style="background-color: #f7c6c7; color: #332829;">javadoc</span>
+  </span>
+
+
+                                        </div>
+
+                                        <div class="issue-card project-card pl-5 p-2 mb-2 border border-gray rounded-1 js-project-column-card js-socket-channel js-updatable-content bg-white" id="card-2848615" data-channel="projects:cards:2848615" data-card-id="2848615" data-content-type="Issue" data-content-id="220178825" data-card-assignee="[]" data-card-author="[&quot;pbludov&quot;]" data-card-label="[&quot;approved&quot;,&quot;gsoc2017&quot;,&quot;javadoc&quot;,&quot;medium&quot;]" data-card-repo="[&quot;checkstyle/checkstyle&quot;]" data-card-state="[&quot;open&quot;]" data-card-title="[&quot;checkstyle&quot;,&quot;ignores&quot;,&quot;javadoc&quot;,&quot;that&quot;,&quot;placed&quot;,&quot;over&quot;,&quot;annotation&quot;,&quot;type&quot;,&quot;elements&quot;,&quot;4169&quot;,&quot;#4169&quot;]" data-card-type="[&quot;issue&quot;]" data-card-is="[&quot;open&quot;,&quot;issue&quot;]">
+
+  
+<span class="card-octicon position-absolute text-green">
+  <svg aria-label="Open Issue" class="octicon octicon-issue-opened open" height="16" role="img" version="1.1" viewBox="0 0 14 16" width="14"><path fill-rule="evenodd" d="M7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 0 1 1.3 8c0-3.14 2.56-5.7 5.7-5.7zM7 1C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7zm1 3H6v5h2V4zm0 6H6v2h2v-2z"></path></svg>
+</span>
+
+                                            <a href="https://github.com/checkstyle/checkstyle/issues/4169" class="h5 d-block lh-condensed mr-4 mb-1">Checkstyle ignores javadoc that placed over Annotation type elements </a>
+
+
+
+                                            <small class="text-gray d-block ">
+                                                #4169 opened by <a href="https://github.com/pbludov" class="text-gray-dark">pbludov</a>
+                                            </small>
+
+
+                                            <span class="labels d-block pb-1 ">
+      <span aria-label="View all approved" class="issue-card-label css-truncate css-truncate-target label mt-1 v-align-middle labelstyle-009800 linked-labelstyle-009800 tooltipped tooltipped-n" style="background-color: #009800; color: #fff;">approved</span>
+      <span aria-label="View all GSoC2017" class="issue-card-label css-truncate css-truncate-target label mt-1 v-align-middle labelstyle-fbca04 linked-labelstyle-fbca04 tooltipped tooltipped-n" style="background-color: #fbca04; color: #332900;">GSoC2017</span>
+      <span aria-label="View all javadoc" class="issue-card-label css-truncate css-truncate-target label mt-1 v-align-middle labelstyle-f7c6c7 linked-labelstyle-f7c6c7 tooltipped tooltipped-n" style="background-color: #f7c6c7; color: #332829;">javadoc</span>
+      <span aria-label="View all medium" class="issue-card-label css-truncate css-truncate-target label mt-1 v-align-middle labelstyle-c2e0c6 linked-labelstyle-c2e0c6 tooltipped tooltipped-n" style="background-color: #c2e0c6; color: #2c332d;">medium</span>
+  </span>
+
+
+                                        </div>
+
+                                        <div class="issue-card project-card pl-5 p-2 mb-2 border border-gray rounded-1 js-project-column-card js-socket-channel js-updatable-content bg-white" id="card-2915669" data-channel="projects:cards:2915669" data-card-id="2915669" data-content-type="Issue" data-content-id="228687260" data-card-assignee="[]" data-card-author="[&quot;pashaturok&quot;]" data-card-label="[&quot;approved&quot;,&quot;gsoc2017&quot;,&quot;javadoc&quot;]" data-card-repo="[&quot;checkstyle/checkstyle&quot;]" data-card-state="[&quot;open&quot;]" data-card-title="[&quot;check&quot;,&quot;one&quot;,&quot;line&quot;,&quot;empty&quot;,&quot;before&quot;,&quot;tags&quot;,&quot;in&quot;,&quot;javadoc&quot;,&quot;4356&quot;,&quot;#4356&quot;]" data-card-type="[&quot;issue&quot;]" data-card-is="[&quot;open&quot;,&quot;issue&quot;]">
+
+  
+<span class="card-octicon position-absolute text-green">
+  <svg aria-label="Open Issue" class="octicon octicon-issue-opened open" height="16" role="img" version="1.1" viewBox="0 0 14 16" width="14"><path fill-rule="evenodd" d="M7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 0 1 1.3 8c0-3.14 2.56-5.7 5.7-5.7zM7 1C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7zm1 3H6v5h2V4zm0 6H6v2h2v-2z"></path></svg>
+</span>
+
+                                            <a href="https://github.com/checkstyle/checkstyle/issues/4356" class="h5 d-block lh-condensed mr-4 mb-1">Check one line empty before tags in javadoc</a>
+
+
+
+                                            <small class="text-gray d-block ">
+                                                #4356 opened by <a href="https://github.com/PashaTurok" class="text-gray-dark">PashaTurok</a>
+                                            </small>
+
+
+                                            <span class="labels d-block pb-1 ">
+      <span aria-label="View all approved" class="issue-card-label css-truncate css-truncate-target label mt-1 v-align-middle labelstyle-009800 linked-labelstyle-009800 tooltipped tooltipped-n" style="background-color: #009800; color: #fff;">approved</span>
+      <span aria-label="View all GSoC2017" class="issue-card-label css-truncate css-truncate-target label mt-1 v-align-middle labelstyle-fbca04 linked-labelstyle-fbca04 tooltipped tooltipped-n" style="background-color: #fbca04; color: #332900;">GSoC2017</span>
+      <span aria-label="View all javadoc" class="issue-card-label css-truncate css-truncate-target label mt-1 v-align-middle labelstyle-f7c6c7 linked-labelstyle-f7c6c7 tooltipped tooltipped-n" style="background-color: #f7c6c7; color: #332829;">javadoc</span>
+  </span>
+
+
+                                        </div>
+
+                                        <div class="issue-card project-card pl-5 p-2 mb-2 border border-gray rounded-1 js-project-column-card js-socket-channel js-updatable-content bg-white" id="card-2848658" data-channel="projects:cards:2848658" data-card-id="2848658" data-content-type="Issue" data-content-id="26948221" data-card-assignee="[]" data-card-author="[&quot;isopov&quot;]" data-card-label="[&quot;enhancement&quot;,&quot;gsoc2017&quot;,&quot;javadoc&quot;]" data-card-repo="[&quot;checkstyle/checkstyle&quot;]" data-card-state="[&quot;open&quot;]" data-card-title="[&quot;allow&quot;,&quot;commenting&quot;,&quot;only&quot;,&quot;one&quot;,&quot;of&quot;,&quot;the&quot;,&quot;property&quot;,&quot;methods&quot;,&quot;96&quot;,&quot;#96&quot;]" data-card-type="[&quot;issue&quot;]" data-card-is="[&quot;open&quot;,&quot;issue&quot;]">
+
+  
+<span class="card-octicon position-absolute text-green">
+  <svg aria-label="Open Issue" class="octicon octicon-issue-opened open" height="16" role="img" version="1.1" viewBox="0 0 14 16" width="14"><path fill-rule="evenodd" d="M7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 0 1 1.3 8c0-3.14 2.56-5.7 5.7-5.7zM7 1C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7zm1 3H6v5h2V4zm0 6H6v2h2v-2z"></path></svg>
+</span>
+
+                                            <a href="https://github.com/checkstyle/checkstyle/issues/96" class="h5 d-block lh-condensed mr-4 mb-1">Allow commenting only one of the property methods</a>
+
+
+
+                                            <small class="text-gray d-block ">
+                                                #96 opened by <a href="https://github.com/isopov" class="text-gray-dark">isopov</a>
+                                            </small>
+
+
+                                            <span class="labels d-block pb-1 ">
+      <span aria-label="View all enhancement" class="issue-card-label css-truncate css-truncate-target label mt-1 v-align-middle labelstyle-84b6eb linked-labelstyle-84b6eb tooltipped tooltipped-n" style="background-color: #84b6eb; color: #1c2733;">enhancement</span>
+      <span aria-label="View all GSoC2017" class="issue-card-label css-truncate css-truncate-target label mt-1 v-align-middle labelstyle-fbca04 linked-labelstyle-fbca04 tooltipped tooltipped-n" style="background-color: #fbca04; color: #332900;">GSoC2017</span>
+      <span aria-label="View all javadoc" class="issue-card-label css-truncate css-truncate-target label mt-1 v-align-middle labelstyle-f7c6c7 linked-labelstyle-f7c6c7 tooltipped tooltipped-n" style="background-color: #f7c6c7; color: #332829;">javadoc</span>
+  </span>
+
+
+                                        </div>
+
+
+
+                                    </div>
+
+                                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            </div>
+                        </div>
+
+                        <div class="project-pane js-project-pane project-pane-menu js-project-menu-pane border-left border-bottom position-absolute bottom-0 bg-gray-light overflow-auto d-none">
+                            <div class="py-2 border-bottom bg-gray">
+                                <button class="btn-link position-absolute top-0 right-0 pt-2 pr-3 pb-1 link-gray js-hide-project-menu" aria-label="Hide project triage" type="button">
+                                    <svg aria-hidden="true" class="octicon octicon-x" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M7.48 8l3.75 3.75-1.48 1.48L6 9.48l-3.75 3.75-1.48-1.48L4.52 8 .77 4.25l1.48-1.48L6 6.52l3.75-3.75 1.48 1.48z"></path></svg>
+                                </button>
+                                <h4 class="f5 text-center">Menu</h4>
+                            </div>
+                            <div class="overflow-hidden">
+                                <ul class="mt-3 mx-3 mb-0 list-style-none border-bottom border-gray-light">
+                                    <li class="pb-2"><button type="button" class="btn-link js-show-project-activity d-block">Activity</button></li>
+                                </ul>
+
+                                <div class="pb-3 pr-3 pl-3 markdown-body f5 mt-4">
+                                    <h3 class="f5 mt-0">Project details</h3>
+                                    <p>Mentor: <a href="https://github.com/vladlis">https://github.com/vladlis</a>
+                                        Second mentor: <a href="https://github.com/sabaka">https://github.com/sabaka</a></p>
+                                    <p>Student: <a href="https://github.com/ps-sp">https://github.com/ps-sp</a></p>
+                                    <p>Project plan: <a href="https://docs.google.com/document/d/1daMZ96np7roEC5EavyK96ZYLrEXKXvFcleGur69nUY0/edit?usp=sharing">https://docs.google.com/document/d/1daMZ96np7roEC5EavyK96ZYLrEXKXvFcleGur69nUY0/edit?usp=sharing</a></p>
+                                    <p>Mail-list discussion: <a href="https://groups.google.com/forum/?hl=en#!topic/checkstyle-devel/cRw80h4Q73o">https://groups.google.com/forum/?hl=en#!topic/checkstyle-devel/cRw80h4Q73o</a></p>
+                                    <p>Project idea: <a href="https://github.com/checkstyle/checkstyle/wiki/Checkstyle-GSoC-2017-Project-Ideas#project-name-coverage-of-documentation-comments-style-guide-and-performance-optimization-of-javadoc-parser">https://github.com/checkstyle/checkstyle/wiki/Checkstyle-GSoC-2017-Project-Ideas#project-name-coverage-of-documentation-comments-style-guide-and-performance-optimization-of-javadoc-parser</a></p>
+
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="project-pane js-project-pane js-project-activity-pane d-none border-left border-bottom position-absolute bottom-0 bg-gray-light overflow-auto Details">
+                            <div class="py-2 border-bottom bg-gray">
+                                <button class="btn-link position-absolute top-0 left-0 pt-2 pl-3 pb-1 link-gray js-hide-project-activity" aria-label="Hide project triage" type="button">
+                                    <svg aria-hidden="true" class="octicon octicon-chevron-left" height="16" version="1.1" viewBox="0 0 8 16" width="8"><path fill-rule="evenodd" d="M5.5 3L7 4.5 3.25 8 7 11.5 5.5 13l-5-5z"></path></svg>
+                                </button>
+                                <button class="btn-link position-absolute top-0 right-0 pt-2 pr-3 pb-1 link-gray js-hide-project-menu" aria-label="Hide project triage" type="button">
+                                    <svg aria-hidden="true" class="octicon octicon-x" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M7.48 8l3.75 3.75-1.48 1.48L6 9.48l-3.75 3.75-1.48-1.48L4.52 8 .77 4.25l1.48-1.48L6 6.52l3.75-3.75 1.48 1.48z"></path></svg>
+                                </button>
+                                <h4 class="f5 text-center">Activity</h4>
+                            </div>
+
+                            <!-- '"` --><!-- </textarea></xmp> --><form accept-charset="UTF-8" action="/checkstyle/checkstyle/projects/4/activity" autocomplete="off" class="js-project-activity-form project-activity-form" data-remote="true" method="get"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"></div>
+                            <div class="border-bottom bg-yellow-light Details-content--hidden">
+                                <button class="btn-link ml-3 mt-2 mb-2 link-gray" type="submit">
+                                    View new activity
+                                </button>
+                            </div>
+                        </form>
+                            <ul class="list-style-none js-project-activity-container">
+                                <include-fragment class="js-project-activity-results" data-project-activity-url="/checkstyle/checkstyle/projects/4/activity">
+                                    <div class="text-center py-3 f5 text-gray-light">Loading activity</div>
+                                </include-fragment>
+                            </ul>
+                        </div>
+
+
+                    </div>
+                    <!-- '"` --><!-- </textarea></xmp> --><form accept-charset="UTF-8" action="/checkstyle/checkstyle/projects/4/reorder_columns" class="js-reorder-columns-form" data-remote="true" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"><input name="_method" type="hidden" value="put"><input name="authenticity_token" type="hidden" value="o+2Zsm1WddrLzhYoaWib5K7xKuglCUoOehxrOQfuHD39k5qKYpH6H0/sPungKxYhrKX13AQlx5jK2pQwRQih6A=="></div>
+                    <input type="hidden" name="client_uid" class="js-client-uid-field" value="f0f620ad401c756048f73a59f9fd6ede">
+                    <input type="hidden" name="column_id">
+                    <input type="hidden" name="previous_column_id">
+                </form>
+
+                </div>
+                <div class="modal-backdrop js-touch-events"></div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<script src="js/frameworks-bd2279eeeabb02c6ddb8c5d0a7662922b5564640619945baaaaa4ec99bf8d482.js"></script>
+
+<script src="js/github-e86b9a568e04c7d33ca9cc2a819c862f3bfa1f98607824a0ec5f91e6554a09b7.js"></script>
+
+
+
+</body></html>
