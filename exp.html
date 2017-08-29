@@ -1,0 +1,415 @@
+<html lang="en"><head>
+    <meta charset="utf-8">
+
+    <link href="css/frameworks-7db951ed87f8f6cbd3a9e89c294e300cf23c1a83ad7ae64c70b8f99b21031340.css" media="all" rel="stylesheet">
+    <link href="css/github-7954b84ca7b0a5465456fcdde6ae9d90d5fc06dabd86ac2dcbcf1abe07cb846b.css" media="all" rel="stylesheet">
+
+    <meta name="viewport" content="width=device-width">
+
+    <meta name="msapplication-TileColor" content="#9a1aaf">
+    <meta name="msapplication-TileImage" content="favicon/mstile-144x144.png">
+
+    <link rel="precomposed" sizes="57x57" href="favicon/57x57.png">
+    <link rel="precomposed" sizes="60x60" href="favicon/60x60.png">
+    <link rel="precomposed" sizes="72x72" href="favicon/72x72.png">
+    <link rel="precomposed" sizes="76x76" href="favicon/76x76.png">
+    <link rel="precomposed" sizes="114x114" href="favicon/114x114.png">
+    <link rel="precomposed" sizes="120x120" href="favicon/120x120.png">
+    <link rel="precomposed" sizes="144x144" href="favicon/144x144.png">
+    <link rel="precomposed" sizes="152x152" href="favicon/152x152.png">
+    <link rel="icon" type="image/png" href="favicon/favicon-16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="favicon/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="favicon/favicon-96x96.png" sizes="96x96">
+
+    <title>Javadoc style coverage and parser optimization</title>
+</head>
+
+<body class="logged-in env-production full-width no-footer intent-mouse">
+
+
+<div class="jumbotron MarketplaceJumbotron pb-0 pt-md-4 py-lg-6" "="">
+
+<ul class="d-lg-flex pl-lg-2 flex-items-center text-bold list-style-none float-right" role="navigation">
+    <li>
+        <a href="https://summerofcode.withgoogle.com/projects/#4766617924796416" class="js-selected-navigation-item HeaderNavlink px-lg-2 py-2 py-lg-0" data-hotkey="g p" title="GSoC 2017 Project">
+            Project
+        </a>            </li>
+    <li>
+        <a href="https://github.com/checkstyle/" class="js-selected-navigation-item HeaderNavlink px-lg-2 py-2 py-lg-0" data-hotkey="g i" title="checkstyle">
+            Organization
+        </a>            </li>
+    <li>
+        <a href="https://summerofcode.withgoogle.com/" class="js-selected-navigation-item HeaderNavlink px-lg-2 py-2 py-lg-0" data-hotkey="g p" title="About GSoC">
+            About
+        </a>            </li>
+</ul>
+
+
+</div>
+
+<div role="main">
+    <div itemscope="" itemtype="http://schema.org/SoftwareSourceCode">
+        <div id="js-repo-pjax-container" data-pjax-container="">
+
+
+            <div class="pagehead repohead instapaper_ignore readability-menu experiment-repo-nav">
+                <div class="container repohead-details-container">
+
+                    <a class="float-left header-logo-invertocat" href="https://summerofcode.withgoogle.com/projects/#4766617924796416" aria-label="Homepage">
+                        <img src="images/GSoC.png" alt="GSoC project page" height="32" width="32">
+                    </a>
+                    <h1 class="public">
+                        JAVADOC STYLE COVERAGE AND PARSER OPTIMIZATION
+                        <a title="checkstyle wiki" href="https://github.com/checkstyle/checkstyle/wiki/Checkstyle-GSoC-2017-Project-Ideas#project-name-coverage-of-documentation-comments-style-guide-and-performance-optimization-of-javadoc-parser">
+                            <svg class="float-right octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill="#0065ff" fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg>
+                        </a>
+                    </h1>
+
+                </div>
+                <div class="container">
+
+                    <nav class="reponav js-repo-nav js-sidenav-container-pjax" itemscope="" itemtype="http://schema.org/BreadcrumbList" role="navigation" data-pjax="#js-repo-pjax-container">
+
+  <span itemscope="" itemtype="http://schema.org/ListItem" itemprop="itemListElement">
+    <a href="https://github.com/ps-sp/checkstyle" class="js-selected-navigation-item reponav-item" data-hotkey="g c" data-selected-links="https://github.com/ps-sp/checkstyle" itemprop="url">
+      <svg class="octicon octicon-code" height="16" version="1.1" viewBox="0 0 14 16" width="14"><path fill-rule="evenodd" d="M9.5 3L8 4.5 11.5 8 8 11.5 9.5 13 14 8 9.5 3zm-5 0L0 8l4.5 5L6 11.5 2.5 8 6 4.5 4.5 3z"></path></svg>
+      <span itemprop="name">My Fork</span>
+      <meta itemprop="position" content="1">
+</a>  </span>
+
+                        <span itemscope="" itemtype="http://schema.org/ListItem" itemprop="itemListElement">
+      <a href="commits.html" class="js-selected-navigation-item reponav-item" data-hotkey="g i" data-selected-links="commits.html" itemprop="url">
+        <svg aria-hidden="true" class="octicon octicon-git-commit" height="16" version="1.1" viewBox="0 0 14 16" width="14"><path fill-rule="evenodd" d="M10.86 7c-.45-1.72-2-3-3.86-3-1.86 0-3.41 1.28-3.86 3H0v2h3.14c.45 1.72 2 3 3.86 3 1.86 0 3.41-1.28 3.86-3H14V7h-3.14zM7 10.2c-1.22 0-2.2-.98-2.2-2.2 0-1.22.98-2.2 2.2-2.2 1.22 0 2.2.98 2.2 2.2 0 1.22-.98 2.2-2.2 2.2z"></path></svg>
+        <span itemprop="name">My commits</span>
+        <span class="Counter">25</span>
+        <meta itemprop="position" content="2">
+</a>    </span>
+
+                        <span itemscope="" itemtype="http://schema.org/ListItem" itemprop="itemListElement">
+    <a href="pulls.html" class="js-selected-navigation-item reponav-item" data-hotkey="g p" data-selected-links="pulls.html" itemprop="url">
+      <svg class="octicon octicon-git-pull-request" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M11 11.28V5c-.03-.78-.34-1.47-.94-2.06C9.46 2.35 8.78 2.03 8 2H7V0L4 3l3 3V4h1c.27.02.48.11.69.31.21.2.3.42.31.69v6.28A1.993 1.993 0 0 0 10 15a1.993 1.993 0 0 0 1-3.72zm-1 2.92c-.66 0-1.2-.55-1.2-1.2 0-.65.55-1.2 1.2-1.2.65 0 1.2.55 1.2 1.2 0 .65-.55 1.2-1.2 1.2zM4 3c0-1.11-.89-2-2-2a1.993 1.993 0 0 0-1 3.72v6.56A1.993 1.993 0 0 0 2 15a1.993 1.993 0 0 0 1-3.72V4.72c.59-.34 1-.98 1-1.72zm-.8 10c0 .66-.55 1.2-1.2 1.2-.65 0-1.2-.55-1.2-1.2 0-.65.55-1.2 1.2-1.2.65 0 1.2.55 1.2 1.2zM2 4.2C1.34 4.2.8 3.65.8 3c0-.65.55-1.2 1.2-1.2.65 0 1.2.55 1.2 1.2 0 .65-.55 1.2-1.2 1.2z"></path></svg>
+      <span itemprop="name">My PRs</span>
+      <span class="Counter">25</span>
+      <meta itemprop="position" content="3">
+</a>  </span>
+
+                        <a href="issues.html" class="js-selected-navigation-item reponav-item" data-selected-links="issues.html">
+                            <svg aria-hidden="true" class="octicon octicon-issue-opened" height="16" version="1.1" viewBox="0 0 14 16" width="14"><path fill-rule="evenodd" d="M7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 0 1 1.3 8c0-3.14 2.56-5.7 5.7-5.7zM7 1C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7zm1 3H6v5h2V4zm0 6H6v2h2v-2z"></path></svg>
+                            Issues
+                            <span class="Counter">54</span>
+                        </a>
+                        <a href="wiki.html" class="js-selected-navigation-item selected reponav-item" data-hotkey="g w" data-selected-links="wiki.html">
+                            <svg class="octicon octicon-book" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M3 5h4v1H3V5zm0 3h4V7H3v1zm0 2h4V9H3v1zm11-5h-4v1h4V5zm0 2h-4v1h4V7zm0 2h-4v1h4V9zm2-6v9c0 .55-.45 1-1 1H9.5l-1 1-1-1H2c-.55 0-1-.45-1-1V3c0-.55.45-1 1-1h5.5l1 1 1-1H15c.55 0 1 .45 1 1zm-8 .5L7.5 3H2v9h6V3.5zm7-.5H9.5l-.5.5V12h6V3z"></path></svg>
+                            Wiki
+                        </a>
+
+                        <div class="reponav-dropdown js-menu-container">
+                            <button type="button" class="btn-link reponav-item reponav-dropdown js-menu-target " data-no-toggle="" aria-expanded="false" aria-haspopup="true">
+                                Insights
+                                <svg class="octicon octicon-triangle-down v-align-middle text-gray" height="11" version="1.1" viewBox="0 0 12 16" width="8"><path fill-rule="evenodd" d="M0 5l6 6 6-6z"></path></svg>
+                            </button>
+                            <div class="dropdown-menu-content js-menu-content">
+                                <div class="dropdown-menu dropdown-menu-sw">
+                                    <a class="dropdown-item" href="https://github.com/checkstyle/checkstyle/pulse" data-skip-pjax="">
+                                        <svg class="octicon octicon-pulse" height="16" version="1.1" viewBox="0 0 14 16" width="14"><path fill-rule="evenodd" d="M11.5 8L8.8 5.4 6.6 8.5 5.5 1.6 2.38 8H0v2h3.6l.9-1.8.9 5.4L9 8.5l1.6 1.5H14V8z"></path></svg>
+                                        Pulse
+                                    </a>
+                                    <a class="dropdown-item" href="https://github.com/checkstyle/checkstyle/graphs" data-skip-pjax="">
+                                        <svg class="octicon octicon-graph" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M16 14v1H0V0h1v14h15zM5 13H3V8h2v5zm4 0H7V3h2v10zm4 0h-2V6h2v7z"></path></svg>
+                                        Graphs
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </nav>
+
+                </div>
+            </div>
+
+            <div class="container new-discussion-timeline experiment-repo-nav">
+                <div class="repository-content">
+
+
+
+                    <div class="wants-full-width-container"></div>
+                    <div class="js-client-uid" data-uid="f0f620ad401c756048f73a59f9fd6ede"></div>
+
+                    <div class="position-relative clearfix">
+                        <div class="d-flex flex-row flex-justify-between project-header pt-2 pb-3 px-5 border-bottom">
+                            <div class="project-updated-message js-project-updated-message text-normal d-none f6 px-4 py-2 rounded-1 text-center"></div>
+                            <div class="d-flex flex-justify-between flex-items-center f6">
+                            </div>
+
+                            <div class="d-flex flex-row flex-items-center f6">
+
+                                <button class="btn-link project-header-link v-align-middle no-underline js-show-project-menu" type="button" aria-haspop="true">
+                                    <svg aria-hidden="true" class="octicon octicon-three-bars" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M11.41 9H.59C0 9 0 8.59 0 8c0-.59 0-1 .59-1H11.4c.59 0 .59.41.59 1 0 .59 0 1-.59 1h.01zm0-4H.59C0 5 0 4.59 0 4c0-.59 0-1 .59-1H11.4c.59 0 .59.41.59 1 0 .59 0 1-.59 1h.01zM.59 11H11.4c.59 0 .59.41.59 1 0 .59 0 1-.59 1H.59C0 13 0 12.59 0 12c0-.59 0-1 .59-1z"></path></svg>
+                                    Show menu
+                                </button>
+
+                            </div>
+                        </div>
+
+                        <div class="d-flex flex-column pt-3 pl-5 clearfix position-relative">
+
+
+                            <div class=" " data-channel="projects:598722">
+                                <div id="wiki-wrapper" class="wiki-wrapper page">
+                                    <div class="gh-header">
+                                        <div class="gh-header-show">
+
+                                            <h1 class="gh-header-title instapaper_title">EXP</h1>
+                                            <div class="gh-header-meta">
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="wiki-content" class="wiki-content">
+                                        <div class="has-rightbar">
+
+                                            <div id="wiki-rightbar" class="wiki-rightbar">
+                                                <div class="wiki-pages-box readability-sidebar boxed-group flush js-wiki-pages-box " role="navigation">
+
+                                                    <h3 class="js-wiki-toggle-collapse wiki-auxiliary-content">
+                                                        <svg aria-hidden="true" class="octicon octicon-triangle-down caret-expanded" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M0 5l6 6 6-6z"></path></svg>
+                                                        <svg aria-hidden="true" class="octicon octicon-triangle-right caret-collapsed" height="16" version="1.1" viewBox="0 0 6 16" width="6"><path fill-rule="evenodd" d="M0 14l6-6-6-6z"></path></svg>
+                                                        Pages <span class="Counter">4</span>
+                                                    </h3>
+                                                    <div class="boxed-group-inner wiki-auxiliary-content wiki-auxiliary-content-no-bg">
+
+                                                        <ul class="wiki-pages" data-filterable-for="wiki-pages-filter" data-filterable-type="substring">
+                                                            <li>
+                                                                <strong><a href="wiki.html" class="wiki-page-link">Home</a></strong>
+                                                            </li>
+                                                            <li>
+                                                                <strong><a href="about-checkstyle.html" class="wiki-page-link">About Checkstyle</a></strong>
+                                                            </li>
+                                                            <li>
+                                                                <strong><a href="acknowledgement.html" class="wiki-page-link">Acknowledgement</a></strong>
+                                                            </li>
+                                                            <li>
+                                                                <strong><a href="exp.html" class="wiki-page-link">EXP</a></strong>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="boxed-group flush">
+
+                                                </div>
+
+
+                                                <div class="width-full input-group js-zeroclipboard-container">
+        
+        <span class="input-group-button">
+          
+        </span>
+                                                </div>
+
+
+                                            </div>
+
+                                            <div id="wiki-body" class="wiki-body gollum-markdown-content instapaper_body">
+                                                <div class="markdown-body">
+                                                    <h2>
+                                                        <a id="user-content-open-source-development" class="anchor" href="#open-source-development" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Open Source Development</h2>
+                                                    <p>I have always liked to code and open source development gives one a purpose to code, an objective to accomplish, collaborators to colloborate with and introduces the much needed formalism to ones work. Before <a href="https://summerofcode.withgoogle.com/">GSoC</a>, I previously had some experience of working with open source softwares. My first detailed exposure was to <a href="https://poi.apache.org/">Apache POI</a> when I worked with it to develop backend for a mobile app at my internship at <a href="https://www.lntinfotech.com/">Larsen &amp; Toubro Infotech</a>. The attraction to open source was quite natural and my first ever issue fix was for [Apache DataFu](<a href="https://datafu.incubator.apache">https://datafu.incubator.apache</a>.</p>
+                                                    <p>Enough context now lets fast-forward to GSoC, which exultingly was well with in a year since my official encounter with open source. I wanted to get into GSoC so much, because as I said I like to code, that I exhausted all 5 project proposal slots. All my project proposals were for checkstyle. 5 May 2017, that's when I was intimated by GSoC folks that my proposal for <a href="https://github.com/checkstyle/checkstyle/wiki/Checkstyle-GSoC-2017-Project-Ideas#project-name-coverage-of-documentation-comments-style-guide-and-performance-optimization-of-javadoc-parser">Coverage of Documentation Comments Style Guide and performance optimization of Javadoc parser</a> was selected and I was thrilled beyond any words can describe. Approximately the next 3 months, were deemed to be the GSoC official coding period and my project was particularly a big one and one requiring lots of discussions for the colloborators to reach a common conclusion.</p>
+                                                    <p>Participating into GSoC helped me get credible open source experience at an incredible rate. GSoC adds severe value to open source development by primarily two componentes, one being deadlines and another, an official mentor. About deadlines, as I already mentioned my project was particularly a big one, I spent a good amount of time chasing deadlines. You can't get to understand real work flow, real compromises in code that you have to make, real efficieny and smart work until you are put on a clock. About mentor, well, working with mentor helps you speed up work and one can directly gain from the mentor's official experience which is pretty great considering that mentors generally tend to people who are very well toned in software development.</p>
+                                                    <p>Overall, participating into GSoC was a pretty delectable experience for the code monster within me. I got to know several work flow patterns and bottomline being I got to know how to get the work done. To summarize, my GSoC was full of discussions, speculations, skimming through specfications, bug-fixing, desgining a grammar for javadoc, chasing deadlines, and meeting objectives.</p>
+                                                    <hr>
+                                                    <h2>
+                                                        <a id="user-content-coding-standards" class="anchor" href="#coding-standards" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Coding Standards</h2>
+                                                    <p>One of the great things about working with checkstyle is that you get to practise what you preach. What I mean to say is, since checkstyle uses itself to validate its own source and asserts the coding conventions and style quite thoroughly throughtout the code you get to know more and more of the industry wide coding standards as you work on checkstyle. In fact one of the objectives of my project was to come up with coverage of javadoc <a href="http://docs.oracle.com/javase/8/docs/technotes/tools/windows/javadoc.html">styling guidelines from oracle</a>. It was designed to be the second part of the project but wasn't actually pursed in the project since the javadoc parser happens to need further optimzation before that. The coding conventions upheld by checkstyle are reflected by the following checkstyle configuration xml file specifying the checks used by checkstyle before accepting any new code</p>
+                                                    <p><a href="https://github.com/checkstyle/checkstyle/blob/master/config/checkstyle_checks.xml">checkstyle_checks.xml</a></p>
+                                                    <p>Checkstyle is used to by several other repositories one of them being <a href="https://github.com/google/guava">Google Gauva</a>. The coverage of the coding style enforced by checkstyle for the guava library can be seen <a href="http://checkstyle.sourceforge.net/google_style.html">here</a></p>
+                                                    <p><strong>See Also</strong>: <a href="http://www.oracle.com/technetwork/articles/javase/codeconvtoc-136057.html">Oracle code conventions</a>, <a href="http://docs.oracle.com/javase/8/docs/technotes/tools/windows/javadoc.html">Oracle javadoc syntax</a> (<em>as recognized by its javadoc tool</em>)</p>
+                                                    <hr>
+                                                    <h2>
+                                                        <a id="user-content-software-testing" class="anchor" href="#software-testing" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Software Testing</h2>
+                                                    <p>Code quality is of utmost important at checkstyle. A legion of checks validate the code before it can be added to checkstyle. Just a rough overview of an <code>mvn verify</code> for checkstyle would let you know what I am talking about. There are more than 2300 tests in UTs for checkstyle right now and the number is for sure not to decrease. If I remember correctly. there were not more than 1800 or 1900 checks when I first started with checkstyle, a few months before GSoC that is. So yeah, I was talking about the verify lifecycle phase of maven for checkstyle. First all these tests get deployed. After that checkstyle uses itself to validate its source code. After checkstyle, <a href="https://github.com/sevntu-checkstyle/sevntu.checkstyle">sevntu-checkstyle</a> validates the source code. After that <a href="https://pmd.github.io/">pmd</a>, <a href="http://findbugs.sourceforge.net/">finbugs</a>, <a href="https://spotbugs.github.io/">spotbugs</a> try to cover all the potential bugs in the code. Finally, all the new code added should be covered and that is asserted by <a href="http://cobertura.github.io/cobertura/">cobertura</a> which apparently instruments the code and hearing about code instrumentation always makes me go "woah !". One more thing, coverage shouldn't be considered sufficent to gauge the quality of the test code which I have personally experienced in my work and for the same reason folks at checkstyle brought <a href="http://pitest.org/">PIT mutation testing</a> into the picture which also happens to be my favourite test-suite in checkstyle, just a side note. PIT tests basically introudce mutations into the code, modify/remove source lines of code unpredicatbly, and if at least one UT fails for a mutation then that mutation is considered to be covered or killed. Repositories can set whatever mutation coverage is desirable to them for each module and for the whole code. One more thing, pit tests aren't executed during the verify phase but are executed on CI servers, but can be executed manually with the testing profiles using commands like <code>mvn $PROFILE clean verify org.pitest:pitest-maven:mutationCoverage;</code>. So yeah, I haven't worked with enough repositories to say that checkstyle is at the postive extremum of testing in the open source spectrum but I would say that anyway, cheeky me. So yeah, that is just the testing done on the local, after you create a PR, which is the only way checkstyle accepts code from general public, several more checks run on the updated code from about 10 different CI severs which I shall be covering in the section that follow. And if all this was not good enough, a separate regression testing tool is hosted at <a href="https://github.com/checkstyle/contribution/">checkstyle/contribution</a>. This regression testing tool actually was quite vital for my project and was further developed in it. Basically we needed to make sure that changing ANTLR grammar for javadoc didn't result in unexpected parse trees or break anything else. More on it <a href="#regression-testing">below</a>.</p>
+                                                    <p><strong>Random Links</strong></p>
+                                                    <p><a href="https://github.com/checkstyle/contribution">Regression Testing tool</a></p>
+                                                    <p><a href="https://github.com/checkstyle/checkstyle/pull/4751#discussion_r128114571">Interesting PMD failure</a></p>
+                                                    <p><a href="">Sample cobertura report</a></p>
+                                                    <p><a href="">Sample PIT report</a></p>
+                                                    <hr>
+                                                    <h2>
+                                                        <a id="user-content-ci" class="anchor" href="#ci" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>CI</h2>
+                                                    <p>To <em>precisely</em> define and differentiate and understand continuous integeration, continuous deployment and continuous delivery has been some task for me. I feel much comfortable at just intuitively grabbing the concept from whatever the name directs at. Anyway, theoritical disucssions about these concepts is for some other day and we can just dive into the CI servers at checkstyle. Checkstyle uses about 10 CI servers as of Aug, 2017 and statuses of 8 of them for the main repository, as of 29 Aug 2017, can be looked at below:</p>
+                                                    <p><a href="https://travis-ci.org/checkstyle/checkstyle/builds"><img src="https://camo.githubusercontent.com/b47b4aa0ecd5d89ae79640c9724cf1734b5a7269/68747470733a2f2f7472617669732d63692e6f72672f636865636b7374796c652f636865636b7374796c652e737667" alt=""></a>
+                                                        <a href="https://ci.appveyor.com/project/checkstyle/checkstyle/history"><img src="https://camo.githubusercontent.com/05ff7560846e3a37cd8c779723e16af51de02dd2/68747470733a2f2f63692e6170707665796f722e636f6d2f6170692f70726f6a656374732f7374617475732f727736627733646c396b7068367563633f7376673d74727565" alt=""></a>
+                                                        <a href="https://teamcity.jetbrains.com/viewType.html?buildTypeId=Checkstyle_IdeaInspectionsMaster"><img src="https://camo.githubusercontent.com/cc9d68971272316de25733fe6b99324b9e2cafb5/68747470733a2f2f696d672e736869656c64732e696f2f7465616d636974792f687474702f7465616d636974792e6a6574627261696e732e636f6d2f732f436865636b7374796c655f49646561496e7370656374696f6e734d61737465722e7376673f6c6162656c3d5465616d43697479253230696e7370656374696f6e73" alt=""></a>
+                                                        <a href="https://codeship.com/projects/124310"><img src="https://camo.githubusercontent.com/d62464355028cd9f3766253a8087a4f1b9e80213/68747470733a2f2f636f6465736869702e636f6d2f70726f6a656374732f36376238313461302d386665652d303133332d396235392d3032613137303238396238632f7374617475733f6272616e63683d6d6173746572" alt=""></a>
+                                                        <a href="https://circleci.com/gh/checkstyle/checkstyle/tree/master"><img src="https://camo.githubusercontent.com/6a062e89e77823256b78e46bd891e3004a4a39f5/68747470733a2f2f636972636c6563692e636f6d2f67682f636865636b7374796c652f636865636b7374796c652f747265652f6d61737465722e7376673f7374796c653d737667" alt=""></a>
+                                                        <a href="https://app.wercker.com/project/bykey/cd383127330ff96f89f1a78e8fd1a557"><img src="https://camo.githubusercontent.com/e3f30c5a216bd4b0685fd69349c7b1950a94786a/68747470733a2f2f6170702e776572636b65722e636f6d2f7374617475732f63643338333132373333306666393666383966316137386538666431613535372f732f6d6173746572" alt=""></a>
+                                                        <a href="https://app.shippable.com/projects/577032be3be4f4faa56adb38"><img src="https://camo.githubusercontent.com/040ba8d0a290cbb977b5b1c1252c3a79230dbd4e/68747470733a2f2f696d672e736869656c64732e696f2f736869707061626c652f3537373033326265336265346634666161353661646233382f6d61737465722e7376673f6c6162656c3d736869707061626c65" alt=""></a>
+                                                        <a href="https://codecov.io/github/checkstyle/checkstyle?branch=master"><img src="https://camo.githubusercontent.com/eb7bb457c855ce648ad746297722f6b404d08d72/68747470733a2f2f636f6465636f762e696f2f6769746875622f636865636b7374796c652f636865636b7374796c652f636f7665726167652e7376673f6272616e63683d6d6173746572" alt=""></a></p>
+                                                    <p>Description of a few CIs employed at checkstyle:</p>
+                                                    <ul>
+                                                        <li>
+                                                            <p><strong>Travis-ci</strong> - It runs several tests on checkstyle in the UNIX environment and with several <code>-Duser.language</code> and <code>-Duser.region</code> settings, i.e locale settings, for maven.Yes, checkstyle supports various languages. You can
+                                                                learn more about the kinds of locales checkstyle can support and the kinds of messages generated by checkstyle by looking at the <code>*.properties</code> files <a href="https://github.com/checkstyle/checkstyle/tree/master/src/main/resources/com/puppycrawl/tools/checkstyle/checks">in these directories</a></p>
+                                                        </li>
+                                                        <li>
+                                                            <p><strong>AppVeyor</strong> - It runs <code>mvn verify</code> with different settings and the maven site plugin in Windows Environment,</p>
+                                                        </li>
+                                                        <li>
+                                                            <p><strong>TeamCity</strong> - It inspects code for several miscellaneous aspects which lead to poor design, or potential bugs or redundancy and so on.</p>
+                                                        </li>
+                                                        <li>
+                                                            <p><strong>Wercker</strong> - It executes no exception tests and no error tests by running checkstyle on various repositories. Just a side note, wercker has been bought by oracle.</p>
+                                                        </li>
+                                                        <li>
+                                                            <p><strong>Shippable</strong> - Take cares of all the PIT mutation testing that is done on checkstyle.</p>
+                                                        </li>
+                                                        <li>
+                                                            <p><strong>Codecov</strong> - Checks code coverage.</p>
+                                                        </li>
+                                                    </ul>
+                                                    <p><strong>Random Links</strong></p>
+                                                    <p><a href="https://github.com/pgjdbc/pgjdbc/pull/926">Wercker reveals PostgreSQL JDBC driver has syntax error in javadoc</a></p>
+                                                    <p><a href="https://github.com/checkstyle/checkstyle/issues/4955">AppVeyor helps identify bugs in ANTLR</a></p>
+                                                    <p><a href="https://github.com/checkstyle/checkstyle/issues/4980">AppVeyor helps identify bugs in checkstyle</a></p>
+                                                    <p><a href="https://github.com/checkstyle/checkstyle/pull/4751#discussion_r128120368">Interesting Shippable failure</a></p>
+                                                    <hr>
+                                                    <h2>
+                                                        <a id="user-content-the-antlr-tool" class="anchor" href="#the-antlr-tool" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>The ANTLR Tool</h2>
+                                                    <p>If I am to pick just one, most exciting tool from all those I encountered in my GSoC project it would be this. My primary objective was javadoc parser optimization. Javadoc Parsing is done using the <a href="http://www.antlr.org/">ANTLR</a> tool. To understand the working of the ANTLR tool I had to first get a grasp on the basic parsing theory. So, I started with Chomsky's hierarchy and kept skimming through Wikipedia and whatever resources I could get my hands on to understand how parsers work during the first week of my project. Also, I had been granted access to the <em>The Definitive ANTLR 4 Reference</em> by my mentor and I had nothing to complain about. Just a side note, <em>The Definitive ANTLR 4 Reference</em> describes the working of the quite vivid and powerful ANTLR tool very beautifully and thoroughly, kudos to <a href="https://en.wikipedia.org/wiki/Terence_Parr">Terence Parr</a>.</p>
+                                                    <p>So basically, what you have to do to generate a parser using the ANTLR tool is have a lexer grammar, like <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/com/puppycrawl/tools/checkstyle/grammars/javadoc/JavadocLexer.g4">this one</a>, have a parser grammar, like <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/com/puppycrawl/tools/checkstyle/grammars/javadoc/JavadocParser.g4">this one</a> or reather have combined grammar and feed it to the ANTLR tool using the right commands. ANTLR then gives several options to visualize <em>(a GUI too)</em>, process <em>(visitor design pattern/listeners)</em>, modify and do so many other things with the parse tree generated with the ANTLR parser. I wouldn't like to go any further into ANTLR and there already exists a complete reference book just for it.</p>
+                                                    <p><strong>Random Facts</strong></p>
+                                                    <p>SLOC count for <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/com/puppycrawl/tools/checkstyle/grammars/javadoc/JavadocParser.g4">Javadoc Parser grammar</a> <em><code>(as of Tue Aug 29 08:49:44 2017 +0530)</code></em></p>
+                                                    <pre><code>git log --numstat --oneline --pretty=format: --author="Piyush Sharma"  checkstyle/checkstyle/src/main/resources/com/puppycrawl/tools/checkstyle/grammars/javadoc/JavadocParser.g4 | gawk '{ add += $1; subs += $2;} END { printf "Lines Added: %s       Lines Removed: %s\n", add, subs}'
+Lines Added: 417       Lines Removed: 398
+</code></pre>
+                                                    <p>SLOC count for <a href="https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/com/puppycrawl/tools/checkstyle/grammars/javadoc/JavadocLexer.g4">Javadoc Lexer grammar</a> <em><code>(as of Tue Aug 29 08:49:44 2017 +0530)</code></em></p>
+                                                    <pre><code>git log --numstat --oneline --pretty=format: --author="Piyush Sharma"  checkstyle/checkstyle/src/main/resources/com/puppycrawl/tools/checkstyle/grammars/javadoc/JavadocLexer.g4 | gawk '{ add += $1; subs += $2;} END { printf "Lines Added: %s       Lines Removed: %s\n", add, subs}'
+Lines Added: 19       Lines Removed: 11
+</code></pre>
+                                                    <p><strong>Random Links</strong></p>
+                                                    <p><a href="https://pragprog.com/book/tpantlr2/the-definitive-antlr-4-reference">The Definitive ANTLR 4 Reference</a></p>
+                                                    <p><a href="https://github.com/antlr/antlr4/blob/master/doc/index.md">ANTLR documentation</a></p>
+                                                    <p><a href="https://github.com/antlr/">ANTLR github</a></p>
+                                                    <hr>
+                                                    <h2>
+                                                        <a id="user-content-regression-testing" class="anchor" href="#regression-testing" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Regression Testing</h2>
+                                                    <p>The regression testing took atleast 20% time of the first half of the project duration. Checkstyle already had a <a href="https://github.com/checkstyle/contribution">regression testing tool</a> but it was not capable of testing changes in the ANTLR grammar. Thus, we needed to up the regression testing tool and give it the capabilities to test changes in ANTLR grammar and an <a href="https://github.com/checkstyle/contribution/issues/237">issue</a> was created for this. Initially it was propsed that we can hack a way out by creating a javadoc check that logs every line it encounters as a violation which would have allowed us to use the exisiting tool, but there were several nuances attached with this approach and there implementation and design concerns related to it too since to be able to formally provide the regression testing option to whoever it concerned, checkstyle would have to incorporate that puppet check into its main repository which seemed pretty questionable. Also <code>cherry-pick</code>ing a commit created with the puppet check or applying a patch didn't look like much reliable implementations either. So, I tried creating a new script in groovy for this purpose which would have given the script some sort of much appreciated platform independence but there were performance related issues with it too and the script was just not fast enough. I also tried transforming that groovy script into a proper java tool but again the problem persisted, it simply wasn't fast enough. Finally, <a href="https://github.com/rnveach">Richard Veach</a>, a member at checkstyle, churned out a bash script which was chosen but even with it, initially, when the javadoc parser was relatively less optimized to wheere it stands now, regression testing used to take quite a lot of time. Sometimes even more than 7 or 8 hours, that too without running checkstyle on some of the bigger repositories.</p>
+                                                    <p>A modified version of Richard's script can be found at my fork <a href="https://github.com/ps-sp/contribution/commits/docparseprof">here</a>. The script has been modified to work with the branch <a href="https://github.com/ps-sp/checkstyle/tree/docparseprof">docparseprof</a> at my checkstyle fork. What it does is, along with giving the difference counts that the original script does too, it also nicely lays out the performance of the Javadoc parser in master and in patch, separately, in terms of the total times certain methods took to execute. As can be deciphered, this is a pretty useful feature for someone who's primarly concerned with javadoc parser optimization.</p>
+                                                    <p>Previously not having a significant experience of working with bash scripts, working on this script was quite a positive experience for me. Right now the modifications have not been pulled in the master and remain in my fork but hopefully they shall be merged soon and an <a href="https://github.com/checkstyle/contribution/issues/261">issue</a> already exists for this at the corresponding repository.</p>
+                                                    <p>Also, eventually one more thing was realized that, along with this new script, the <a href="https://github.com/checkstyle/contribution/blob/master/checkstyle-tester/diff.groovy">existing groovy script</a>, which did regression testing based on the violations logged by checks, should also be run since poor implementation or incorrect implementation of checks or checks that relied on particular elements in parse trees may produce difference counts at times and apparently one can't always predict which checks would get impacted from the changes in Javadoc grammar. Thus, regression testing for all javadoc checks along with the regression testing for the parse trees produced was the norm for all the grammar impacting commits.</p>
+                                                    <p><strong>Random Links</strong></p>
+                                                    <p><a href="https://github.com/ps-sp/contribution/commit/ae2bce73f2f581009889535bec877068b3bbf7b3">Groovy script that failed</a></p>
+                                                    <p><a href="https://github.com/rnveach/checkstyle/commit/6a2600ca9d779e17a5e9076aa0da3d0abf14f71f#diff-8582d74a6dba42fdf44e42ee5fc88127L243">The puppet check</a></p>
+                                                    <p><a href="https://github.com/checkstyle/contribution/tree/master/patch-diff-report-tool">Tool that actually produces the final diff report</a></p>
+                                                    <p><a href="https://sample-antlr-report.netlify.com/">ANTLR regression test report produced with my modified script</a></p>
+                                                    <hr>
+                                                    <h2>
+                                                        <a id="user-content-challenges" class="anchor" href="#challenges" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Challenges</h2>
+                                                    <ul>
+                                                        <li>
+                                                            <p>Several objectives had to be achieved in the short span of the project period. Chasing deadlines imposed a greated need for parallelism in work.</p>
+                                                        </li>
+                                                        <li>
+                                                            <p>The grammar appeals to the HTML specification and the oracle documentation guidelines. Discussing them and reaching a common conclusion with all collaborators required a great deal of discussion and thus a great deal of time.</p>
+                                                        </li>
+                                                        <li>
+                                                            <p>Few times it so happened that organization admins were highly occupied which resulted in delayed review cycles.</p>
+                                                        </li>
+                                                        <li>
+                                                            <p>Work division and PR management. The reports of regression testing ended up getting unmanageable for the reivewers a few times because of high difference counts. This imposed a greater need for me to understand the importance of dividing work which also happens to speed up review cycles and acceptance.</p>
+                                                        </li>
+                                                        <li>
+                                                            <p>No single formal specification to look at. The javadoc parse tree was supposed to be in sync with the javadoc tool and the javadoc tool should be based on the javadoc syntax given in <a href="http://docs.oracle.com/javase/8/docs/technotes/tools/windows/javadoc.html">oracle docs</a>, but it isn't that simple, there were several nuances attached and at times a greater need was felt for an <em>exhaustive</em> set production rules for 'javadoc' language.</p>
+                                                        </li>
+                                                        <li>
+                                                            <p>We had to improvise as we went on because there is no formally established grammar for javadoc. For example, have a look at <a href="https://github.com/checkstyle/checkstyle/issues/4752">issues/4752</a>, where first it was concieved that we should support a feature, spent a lot of time digging through specifications available, finally realized that it's no point supporting that issue. Though of course, such discussions are necessary and I would rather even call them vital but deadlines have no respect for them as such.</p>
+                                                        </li>
+                                                    </ul>
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            </div>
+                        </div>
+
+                        <div class="project-pane js-project-pane project-pane-menu js-project-menu-pane border-left border-bottom position-absolute bottom-0 bg-gray-light overflow-auto d-none">
+                            <div class="py-2 border-bottom bg-gray">
+                                <button class="btn-link position-absolute top-0 right-0 pt-2 pr-3 pb-1 link-gray js-hide-project-menu" aria-label="Hide project triage" type="button">
+                                    <svg aria-hidden="true" class="octicon octicon-x" height="16" version="1.1" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M7.48 8l3.75 3.75-1.48 1.48L6 9.48l-3.75 3.75-1.48-1.48L4.52 8 .77 4.25l1.48-1.48L6 6.52l3.75-3.75 1.48 1.48z"></path></svg>
+                                </button>
+                                <h4 class="f5 text-center">Menu</h4>
+                            </div>
+                            <div class="overflow-hidden">
+                                <ul class="mt-3 mx-3 mb-0 list-style-none border-bottom border-gray-light">
+                                    <li class="pb-2"><button type="button" class="btn-link js-show-project-activity d-block">Activity</button></li>
+                                </ul>
+
+                                <div class="pb-3 pr-3 pl-3 markdown-body f5 mt-4">
+                                    <h3 class="f5 mt-0">Project details</h3>
+                                    <p>Mentor: <a href="https://github.com/vladlis">https://github.com/vladlis</a>
+                                        Second mentor: <a href="https://github.com/sabaka">https://github.com/sabaka</a></p>
+                                    <p>Student: <a href="https://github.com/ps-sp">https://github.com/ps-sp</a></p>
+                                    <p>Project plan: <a href="https://docs.google.com/document/d/1daMZ96np7roEC5EavyK96ZYLrEXKXvFcleGur69nUY0/edit?usp=sharing">https://docs.google.com/document/d/1daMZ96np7roEC5EavyK96ZYLrEXKXvFcleGur69nUY0/edit?usp=sharing</a></p>
+                                    <p>Mail-list discussion: <a href="https://groups.google.com/forum/?hl=en#!topic/checkstyle-devel/cRw80h4Q73o">https://groups.google.com/forum/?hl=en#!topic/checkstyle-devel/cRw80h4Q73o</a></p>
+                                    <p>Project idea: <a href="https://github.com/checkstyle/checkstyle/wiki/Checkstyle-GSoC-2017-Project-Ideas#project-name-coverage-of-documentation-comments-style-guide-and-performance-optimization-of-javadoc-parser">https://github.com/checkstyle/checkstyle/wiki/Checkstyle-GSoC-2017-Project-Ideas#project-name-coverage-of-documentation-comments-style-guide-and-performance-optimization-of-javadoc-parser</a></p>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- '"` --><!-- </textarea></xmp> --><form accept-charset="UTF-8" action="/checkstyle/checkstyle/projects/4/reorder_columns" class="js-reorder-columns-form" data-remote="true" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"><input name="_method" type="hidden" value="put"><input name="authenticity_token" type="hidden" value="o+2Zsm1WddrLzhYoaWib5K7xKuglCUoOehxrOQfuHD39k5qKYpH6H0/sPungKxYhrKX13AQlx5jK2pQwRQih6A=="></div>
+                    <input type="hidden" name="client_uid" class="js-client-uid-field" value="f0f620ad401c756048f73a59f9fd6ede">
+                    <input type="hidden" name="column_id">
+                    <input type="hidden" name="previous_column_id">
+                </form>
+
+                </div>
+                <div class="modal-backdrop js-touch-events"></div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<script src="js/frameworks-bd2279eeeabb02c6ddb8c5d0a7662922b5564640619945baaaaa4ec99bf8d482.js"></script>
+
+<script src="js/github-e86b9a568e04c7d33ca9cc2a819c862f3bfa1f98607824a0ec5f91e6554a09b7.js"></script>
+
+
+
+
+
+
+
+</body></html>

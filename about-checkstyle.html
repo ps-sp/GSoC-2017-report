@@ -24,7 +24,7 @@
     <title>Javadoc style coverage and parser optimization</title>
 </head>
 
-<body class="logged-in env-production full-width no-footer intent-mouse">
+<body class="logged-in env-production full-width no-footer">
 
 
 <div class="jumbotron MarketplaceJumbotron pb-0 pt-md-4 py-lg-6" "="">
@@ -158,9 +158,13 @@
                                 <div id="wiki-wrapper" class="wiki-wrapper page">
                                     <div class="gh-header">
                                         <div class="gh-header-show">
+                                            <div class="gh-header-actions">
 
-                                            <h1 class="gh-header-title instapaper_title">Home</h1>
+
+                                            </div>
+                                            <h1 class="gh-header-title instapaper_title">About Checkstyle</h1>
                                             <div class="gh-header-meta">
+
                                             </div>
                                         </div>
                                     </div>
@@ -210,18 +214,20 @@
 
                                             <div id="wiki-body" class="wiki-body gollum-markdown-content instapaper_body">
                                                 <div class="markdown-body">
-                                                    <p><strong>This site hosts the report for my project at Google Summer of Code 2017. I worked with the checkstyle organization and project was about Javadoc Parser Optimization and Javadoc Style coverage. Please use the link provided on top right corner of this page to navigate to the my official summer of code project page. To know more about the project you can either click on the link graphic avaliable beside the project title or you can use the <code>menu</code> option available towards top right section of this page. If you want to have a look at my GSoC experience please click on the link to <a href="https://github.com/ps-sp/GSoC-2017-report/wiki/EXP">EXP</a> page available in the bar towards the right.</strong></p>
-                                                    <p><code>-ps</code></p>
+                                                    <p><img src="https://raw.githubusercontent.com/checkstyle/resources/master/img/checkstyle-logos/checkstyle-logo-260x99.png" alt="checkstyle_img"></p>
+                                                    <p>Checkstyle is a tool for checking Java source code for adherence to a Code Standard or set of validation rules (best practices). Checkstyle is generally run either using it's <code>main</code> method or by supplying the checkstyle jar  the <code>java</code> command. Checkstyle also has a GUI to work with. To use checstyle all you need is a config file which specifies which checks you want to run and their properties and the java files you want to run the checks on. Checkstyle also gives you to write your custom checks though it of course takes some acquaintaince with the checkstyle source code to do that.</p>
+                                                    <p>Basically checkstyle creates parse trees after reading file contents. The parse trees are based on the grammars that have been constructed, separately, for <code>java</code> and <code>javadoc</code> content by checkstyle developers and are created using the <a href="antlr.org">ANTLR</a> tool. All the needed checks are then run on this parse tree.</p>
+                                                    <p>The latest release version can be found at SourceForge downloads or at Maven repository.</p>
+                                                    <p>Each-commit builds of maven artifacts can be found at Maven Snapshot repository.</p>
+                                                    <p>Documentation is available in HTML format at <a href="http://checkstyle.sourceforge.net/checks.html">http://checkstyle.sourceforge.net/checks.html</a>.</p>
+                                                    <h2>
+                                                        <a id="user-content-mailing-lists" class="anchor" href="#mailing-lists" aria-hidden="true"><svg aria-hidden="true" class="octicon octicon-link" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Mailing lists</h2>
+                                                    <p>General discussions: <a href="https://groups.google.com/forum/?hl=en#!forum/checkstyle">https://groups.google.com/forum/?hl=en#!forum/checkstyle</a></p>
+                                                    <p>Release notifications: <a href="https://groups.google.com/forum/?hl=en#!forum/checkstyle-announce">https://groups.google.com/forum/?hl=en#!forum/checkstyle-announce</a></p>
+                                                    <p>Developers: <a href="https://groups.google.com/forum/?hl=en#!forum/checkstyle-devel">https://groups.google.com/forum/?hl=en#!forum/checkstyle-devel</a></p>
 
                                                 </div>
 
-                                                <div id="wiki-footer" class="wiki-footer gollum-markdown-content boxed-group">
-                                                    <div class="boxed-group-inner wiki-auxiliary-content wiki-writable markdown-body">
-
-                                                        <a>checkstyle mailing list report</a>
-
-                                                    </div>
-                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -296,6 +302,7 @@
 <script src="js/frameworks-bd2279eeeabb02c6ddb8c5d0a7662922b5564640619945baaaaa4ec99bf8d482.js"></script>
 
 <script src="js/github-e86b9a568e04c7d33ca9cc2a819c862f3bfa1f98607824a0ec5f91e6554a09b7.js"></script>
+
 
 
 
